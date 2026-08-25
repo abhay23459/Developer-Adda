@@ -57,6 +57,9 @@ body {
 }
 
 .site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background:white;
   height: 8.5vh;
   box-sizing: border-box;
