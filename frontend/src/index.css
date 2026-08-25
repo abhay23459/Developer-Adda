@@ -66,7 +66,7 @@ body {
 .site-navbar .navbar-brand:hover,
 .site-navbar .nav-link:hover,
 .site-navbar .nav-link.active {
-  color: #d1d5db;
+  color: #09eeee;
 }
 
 .site-nav-links {
@@ -92,6 +92,7 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  font-size:22px;
 }
 
 h1,
