@@ -5,7 +5,7 @@ export default function Navbar() {
  <nav className="navbar navbar-expand-lg site-navbar">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">
-    <img src="/public/media/img/deva.jpg.jpeg" alt="Logo" width="120px" height="40" className="d-inline-block align-text-top"/>
+    <img src="/public/media/img/dedd.svg" alt="Logo" className="d-inline-block align-text-top"/>
     </Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
