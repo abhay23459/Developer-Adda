@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from './hero'
+import Hero from './Hero'
 
 export default function AboutPage() {
   return (
