@@ -5,10 +5,8 @@ export default function Navbar() {
  <nav className="navbar navbar-expand-lg site-navbar">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">
-    <div className="image-container"> 
-    <img src="/public/media/img/dedd.svg" alt="Logo" className="d-inline-block align-text-top"/>
-
-    </div>
+    <span className="brand-mark">C</span>
+    <span className="brand-name">Cohoriva</span>
     </Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
