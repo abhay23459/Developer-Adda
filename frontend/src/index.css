@@ -116,6 +116,56 @@ body {
 .site-navbar .navbar-toggler-icon {
   filter: invert(1);
 }
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 24px;
+}
+
+.navbar-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+ height: 30px;
+  width: auto;
+  padding: 0 18px;
+  border: 1px solid orangered;
+  border-radius: 6px;
+  color: #fff;
+  background: orangered;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-action:hover,
+.navbar-action:focus-visible {
+  border-color: #d93b00;
+  color: #fff;
+  background: #e608088a;
+  transform: translateY(-2px);
+  border: none;
+}
+
+.login-action {
+  background: #ff6a33;
+}
+
+@media (max-width: 991px) {
+  .navbar-actions {
+    margin-right: 12px;
+  }
+
+  .navbar-action {
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+}
+
 .image-container {
   display: flex;
   align-items: center;
