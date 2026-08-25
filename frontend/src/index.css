@@ -1,6 +1,6 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
+  --text: #fff;
+  --text-h: #fff;
   --bg: #fff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
@@ -18,7 +18,7 @@
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
-  color: var(--text);
+  color:white;
   background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -53,6 +53,7 @@
 body {
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
+  color: #fff;
 }
 
 .site-navbar {
@@ -200,7 +201,7 @@ h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: #fff;
 }
 
 h1 {
@@ -230,7 +231,7 @@ code,
   font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
-  color: var(--text-h);
+  color: #fff;
 }
 
 code {
