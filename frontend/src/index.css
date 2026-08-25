@@ -159,6 +159,12 @@ body {
   margin-right: 24px;
 }
 
+@media (min-width: 992px) {
+  .navbar-actions {
+    margin-left: auto;
+  }
+}
+
 .navbar-action {
   display: inline-flex;
   align-items: center;
@@ -190,11 +196,32 @@ body {
 }
 
 @media (max-width: 991px) {
+  .site-navbar .navbar-brand {
+    margin-left: 0;
+  }
+
+  .site-navbar .navbar-collapse {
+    padding: 12px 0 16px;
+    background: #fff;
+  }
+
+  .site-nav-links {
+    gap: 0;
+  }
+
+  .site-navbar .nav-link {
+    padding: 10px 0;
+  }
+
   .navbar-actions {
-    margin-right: 12px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0 0;
   }
 
   .navbar-action {
+    width: 100%;
     min-height: 36px;
     padding: 0 12px;
     font-size: 14px;
