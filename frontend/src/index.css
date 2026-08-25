@@ -56,6 +56,8 @@ body {
 
 .site-navbar {
   background: black;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 2px rgba(236, 231, 231, 0.308);
 }
 
 .site-navbar .navbar-brand,
