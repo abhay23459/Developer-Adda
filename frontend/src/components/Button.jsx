@@ -1,5 +1,3 @@
-import React from 'react';
-
 const variants = {
   primary: "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25 border border-indigo-500/30",
   secondary: "bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800",
