@@ -1,6 +1,6 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
+  --text: #fff;
+  --text-h: #fff;
   --bg: #fff;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
@@ -18,7 +18,7 @@
   font: 18px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
-  color: var(--text);
+  color:white;
   background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -53,9 +53,13 @@
 body {
   margin: 0;
   font-family: 'Ubuntu', sans-serif;
+  color: #fff;
 }
 
 .site-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   background:white;
   height: 8.5vh;
   box-sizing: border-box;
@@ -66,6 +70,37 @@ body {
 .site-navbar .navbar-brand,
 .site-navbar .nav-link {
   color: #000;
+}
+
+.site-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: 70px;
+  font-family: var(--heading);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 9px 9px 9px 2px;
+  color: #fff;
+  background: orangered;
+  font-family: Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1;
+  transform: rotate(-8deg);
+}
+
+.brand-name {
+  transform: translateY(-1px);
 }
 
 .site-navbar .nav-link {
@@ -124,6 +159,12 @@ body {
   margin-right: 24px;
 }
 
+@media (min-width: 992px) {
+  .navbar-actions {
+    margin-left: auto;
+  }
+}
+
 .navbar-action {
   display: inline-flex;
   align-items: center;
@@ -155,33 +196,37 @@ body {
 }
 
 @media (max-width: 991px) {
+  .site-navbar .navbar-brand {
+    margin-left: 0;
+  }
+
+  .site-navbar .navbar-collapse {
+    padding: 12px 0 16px;
+    background: #fff;
+  }
+
+  .site-nav-links {
+    gap: 0;
+  }
+
+  .site-navbar .nav-link {
+    padding: 10px 0;
+  }
+
   .navbar-actions {
-    margin-right: 12px;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    margin: 8px 0 0;
   }
 
   .navbar-action {
+    width: 100%;
     min-height: 36px;
     padding: 0 12px;
     font-size: 14px;
   }
 }
-
-.image-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  margin-left: 70px;
-}
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-
 
 #root {
   width: 100%;
@@ -200,7 +245,7 @@ h1,
 h2 {
   font-family: var(--heading);
   font-weight: 500;
-  color: var(--text-h);
+  color: #fff;
 }
 
 h1 {
@@ -230,7 +275,7 @@ code,
   font-family: var(--mono);
   display: inline-flex;
   border-radius: 4px;
-  color: var(--text-h);
+  color: #fff;
 }
 
 code {
