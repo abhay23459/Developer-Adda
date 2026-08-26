@@ -5,8 +5,8 @@ export default function Navbar() {
  <nav className="navbar navbar-expand-lg site-navbar">
   <div className="container-fluid">
     <Link className="navbar-brand" to="/">
-    <span className="brand-mark">C</span>
-    <span className="brand-name">Cohoriva</span>
+    <span className="brand-mark">A</span>
+    <span className="brand-name">AKAS</span>
     </Link>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>

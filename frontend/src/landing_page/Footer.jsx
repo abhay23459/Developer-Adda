@@ -14,14 +14,14 @@ export default function Footer() {
           <form className="footer-form" onSubmit={(event) => event.preventDefault()}>
             <label className="visually-hidden" htmlFor="footer-email">Email address</label>
             <input id="footer-email" type="email" placeholder="Your email address" required />
-            <button type="submit" aria-label="Join the Cohoriva community">Join us <span>↗</span></button>
+            <button type="submit" aria-label="Join the AKAS community">Join us <span>↗</span></button>
           </form>
         </div>
       </div>
 
       <div className="footer-main">
         <div className="footer-brand">
-          <Link className="footer-wordmark" to="/"><span className="brand-mark">C</span><span>Cohoriva</span></Link>
+          <Link className="footer-wordmark" to="/"><span className="brand-mark">A</span><span>AKAS</span></Link>
           <p>A local network for students who learn, build, and grow together.</p>
           <span className="footer-location">Made for ambitious minds everywhere.</span>
         </div>
@@ -50,7 +50,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span>© 2026 Cohoriva</span>
+        <span>© 2026 AKAS</span>
         <span>Learn locally. Build globally.</span>
         <div><a href="mailto:hello@cohoriva.com">hello@cohoriva.com</a><a href="#top">Back to top ↑</a></div>
       </div>
