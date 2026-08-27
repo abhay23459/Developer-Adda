@@ -32,6 +32,7 @@ export default function Navbar({ homePath = '/dashboard', pageTitle = '' }) {
             <NavLink to={homePath} className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setMenuOpen(false)}>Home</NavLink>
             <NavLink to="/leaderboard" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setMenuOpen(false)}>Leaderboard</NavLink>
             <NavLink to="/community" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setMenuOpen(false)}>Community</NavLink>
+            <NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''} onClick={() => setMenuOpen(false)}>About</NavLink>
           </>
         )}
       </nav>
