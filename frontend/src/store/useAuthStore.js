@@ -45,4 +45,10 @@ export const useAuthStore = create((set) => ({
     localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
     set({ user, isAuthenticated: true });
   },
+
+  setCommunity: (community) => set((state) => {
+    const user = { ...state.user, community: community.name, communityTechnologies: community.technologies, communityDescription: community.description };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+    return { user };
+  }),
 }));

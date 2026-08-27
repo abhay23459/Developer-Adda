@@ -5,14 +5,10 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    color-scheme: dark;
-  }
-  
-  body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-indigo-500 selection:text-white;
-    min-height: 100vh;
-  }
+  :root { color-scheme: dark; }
+  body { margin: 0; min-width: 320px; min-height: 100vh; background: #151515; }
+  *, *::before, *::after { box-sizing: border-box; }
+  button, a { font: inherit; }
 }
 
 /* Custom Scrollbar Styles */
@@ -22,11 +18,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #020617;
+  background: #151515;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #45413c;
   border-radius: 9999px;
 }
 
@@ -37,4 +33,32 @@
 /* Custom Glassmorphism Utility Class */
 .glass-panel {
   @apply bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl;
+}
+
+@media (max-width: 900px) {
+  .app-sidebar {
+    display: none;
+  }
+
+  .ml-64 {
+    margin-left: 0 !important;
+  }
+
+  .app-content {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  main.p-8 {
+    padding: 1.25rem !important;
+  }
+
+  main.p-6 {
+    padding: 1rem !important;
+  }
+
+  .grid-cols-12 {
+    grid-template-columns: 1fr !important;
+  }
 }

@@ -24,6 +24,7 @@ export default function Profile() {
               <div>
                 <h1 className="text-2xl font-bold text-white">{user?.name || "Developer"}</h1>
                 <p className="text-slate-400 text-sm mt-0.5">{user?.email || "dev@example.com"}</p>
+                <p className="text-slate-500 text-xs mt-2">{user?.communityDescription || 'Create or join a community to start building together.'}</p>
                 <div className="flex gap-2 mt-3">
                   <SkillBadge skill="Full Stack Developer" />
                   <SkillBadge skill={user?.community || "No Community"} />
@@ -61,7 +62,7 @@ export default function Profile() {
                 <Shield className="w-5 h-5 text-indigo-400" /> Skill Competencies
               </h3>
               <div className="flex flex-wrap gap-2">
-                {['React.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'Algorithms'].map(skill => (
+                {(user?.communityTechnologies?.length ? user.communityTechnologies : ['React.js', 'Node.js', 'TypeScript', 'PostgreSQL', 'Tailwind CSS', 'Docker', 'Algorithms']).map(skill => (
                   <SkillBadge key={skill} skill={skill} />
                 ))}
               </div>

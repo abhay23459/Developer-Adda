@@ -34,7 +34,7 @@ export default function Dashboard() {
                 Welcome back, {user?.name?.split(' ')[0] || "Developer"} 👋
               </h1>
               <p className="text-slate-400 text-sm">
-                Your community <span className="text-indigo-400 font-semibold">{user?.community}</span> is currently ranked #4 globally.
+                Your community <span className="text-indigo-400 font-semibold">{user?.community || 'No community yet'}</span> is currently ranked #4 globally.
               </p>
             </div>
             <Link 

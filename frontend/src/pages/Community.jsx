@@ -1,118 +1,84 @@
-import React from 'react';
-import Sidebar from '../components/Sidebar';
+import { useState } from 'react';
+import { ArrowRight, Check, CheckCircle2, Clock3, Crown, FolderGit2, MessageSquare, Plus, Send, ShieldCheck, UserPlus, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Card from '../components/Card';
-import Button from '../components/Button';
+import Sidebar from '../components/Sidebar';
 import SkillBadge from '../components/SkillBadge';
-import { Crown, Mail, MessageSquare, Plus, Shield ,Users} from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
+import './Community.css';
+import './CommunityCreate.css';
 
-// Mock 10-member team
-const mockMembers = [
-  { id: 1, name: 'Alex Rivera', role: 'COMMUNITY_LEADER', skills: ['React', 'Node.js', 'System Design'], dsa: 1420 },
-  { id: 2, name: 'Sarah Chen', role: 'MEMBER', skills: ['Python', 'Django', 'PostgreSQL'], dsa: 1350 },
-  { id: 3, name: 'Rahul Sharma', role: 'MEMBER', skills: ['React Native', 'Firebase'], dsa: 1100 },
-  { id: 4, name: 'Priya Patel', role: 'MEMBER', skills: ['MongoDB', 'Express.js', 'AWS'], dsa: 1280 },
-  { id: 5, name: 'Vikram Singh', role: 'MEMBER', skills: ['C++', 'Algorithms', 'System Design'], dsa: 1650 },
-  { id: 6, name: 'Anita Desai', role: 'MEMBER', skills: ['Figma', 'React', 'Tailwind'], dsa: 950 },
-  { id: 7, name: 'Karan Kumar', role: 'MEMBER', skills: ['Java', 'Spring Boot', 'MySQL'], dsa: 1400 },
-  { id: 8, name: 'Neha Gupta', role: 'MEMBER', skills: ['Docker', 'Kubernetes', 'CI/CD'], dsa: 1150 },
+const members = [
+  { name: 'Alex Rivera', role: 'Leader', skills: ['React', 'Node.js'], color: 'coral' },
+  { name: 'Sarah Chen', role: 'Member', skills: ['Python', 'Django'], color: 'sage' },
+  { name: 'Rahul Sharma', role: 'Member', skills: ['React Native', 'Firebase'], color: 'gold' },
+  { name: 'Priya Patel', role: 'Member', skills: ['MongoDB', 'AWS'], color: 'blue' },
+  { name: 'Vikram Singh', role: 'Member', skills: ['C++', 'Algorithms'], color: 'lavender' },
+  { name: 'Anita Desai', role: 'Member', skills: ['Figma', 'Tailwind'], color: 'peach' },
+  { name: 'Karan Kumar', role: 'Member', skills: ['Java', 'Spring'], color: 'mint' },
+  { name: 'Neha Gupta', role: 'Member', skills: ['Docker', 'Kubernetes'], color: 'rose' },
+];
+
+const initialMessages = [
+  { author: 'Sarah Chen', text: 'I pushed the first API draft. Can someone take a look?', time: '10:42 AM', color: 'sage' },
+  { author: 'Alex Rivera', text: 'On it. I will review the auth flow before lunch.', time: '10:45 AM', color: 'coral' },
+  { author: 'Rahul Sharma', text: 'The mobile screens are ready for a quick sync.', time: '10:51 AM', color: 'gold' },
 ];
 
 export default function Community() {
   const user = useAuthStore((state) => state.user);
-  const isLeader = user?.role === 'COMMUNITY_LEADER';
+  const setCommunity = useAuthStore((state) => state.setCommunity);
+  const [messages, setMessages] = useState(initialMessages);
+  const [message, setMessage] = useState('');
+  const [assessmentOpen, setAssessmentOpen] = useState(false);
+  const [applicantStatus, setApplicantStatus] = useState('pending');
+  const [createOpen, setCreateOpen] = useState(false);
+  const [community, setLocalCommunity] = useState(user?.community ? { name: user.community, technologies: user.communityTechnologies || [], description: user.communityDescription || 'A focused group for builders who want to learn in public, pair on useful projects, and ship together.' } : null);
+  const [draftCommunity, setDraftCommunity] = useState({ name: '', technologies: '', description: '' });
+
+  const sendMessage = (event) => {
+    event.preventDefault();
+    if (!message.trim()) return;
+    setMessages([...messages, { author: 'You', text: message.trim(), time: 'Just now', color: 'coral' }]);
+    setMessage('');
+  };
+
+  const createCommunity = (event) => {
+    event.preventDefault();
+    const nextCommunity = { name: draftCommunity.name.trim(), technologies: draftCommunity.technologies.split(',').map((technology) => technology.trim()).filter(Boolean), description: draftCommunity.description.trim() };
+    setLocalCommunity(nextCommunity);
+    setCommunity(nextCommunity);
+    setDraftCommunity({ name: '', technologies: '', description: '' });
+    setCreateOpen(false);
+  };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex font-sans">
-      <Sidebar />
-      <div className="flex-1 ml-64 flex flex-col">
-        <Navbar pageTitle="My Community Space" />
-        
-        <main className="flex-1 p-8 overflow-y-auto">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <h1 className="text-3xl font-bold tracking-tight text-white">{user?.community || "Async-Devs-Alpha"}</h1>
-                <span className="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-semibold border border-indigo-500/20 flex items-center gap-1">
-                  <Shield className="w-3 h-3" /> Intermediate Tier
-                </span>
-              </div>
-              <p className="text-slate-400 text-sm">Matched purely on complementary tech stacks and DSA proficiency.</p>
-            </div>
-            
-            <div className="flex gap-3">
-              <Button variant="secondary" icon={MessageSquare}>Group Chat</Button>
-              {isLeader && <Button variant="primary" icon={Plus}>Manage Roles</Button>}
-            </div>
+    <div className="app-page community-page">
+      {community && <Sidebar />}
+      <div className={`app-content ${community ? '' : 'community-precreate'}`}><Navbar />
+        <main className="community-main">
+          {!community && <section className="community-empty-state"><span className="community-kicker">Your community space</span><h1>Create your community</h1><p>Start a focused space where up to 10 members can meet, take an entry test, chat, and build projects together.</p><button className="create-community-button" type="button" onClick={() => setCreateOpen(true)}><Plus size={16} /> Create your community</button></section>}
+          {community && <>
+          <div className="community-heading">
+            <div><span className="community-kicker">My community space</span><h1>{community.name}</h1><p>{community.description}</p><div className="community-tech-list">{community.technologies.map((technology) => <SkillBadge key={technology} skill={technology} level={null} />)}</div></div>
+            <button className="create-community-button" type="button" onClick={() => setCreateOpen(true)}><Plus size={16} /> Create your community</button>
+            <div className="capacity-card"><div><span>Community capacity</span><strong>8 <small>/ 10</small></strong></div><div className="capacity-track"><i /></div><em>2 spots open</em></div>
           </div>
 
-          {/* Tech Stack Aggregation */}
-          <Card className="mb-8 p-6" hoverable={false}>
-            <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-4 font-mono">Community Tech Stack</h3>
-            <div className="flex flex-wrap gap-2">
-              {['React.js', 'Node.js', 'MongoDB', 'PostgreSQL', 'Python', 'C++', 'AWS', 'Docker'].map(skill => (
-                <SkillBadge key={skill} skill={skill} level={null} />
-              ))}
-            </div>
-          </Card>
+          <section className="community-grid">
+            <div className="members-panel workspace-panel"><div className="panel-heading"><div><span className="panel-eyebrow">01 / The circle</span><h2>Members</h2></div><span className="online-count"><i /> 6 online</span></div><div className="member-list">{members.map((member) => <div className="member-row" key={member.name}><div className={`member-avatar ${member.color}`}>{member.name.split(' ').map((part) => part[0]).join('')}</div><div className="member-info"><strong>{member.name}{member.role === 'Leader' && <Crown size={13} />}</strong><span>{member.role}</span></div><div className="member-skills">{member.skills.map((skill) => <SkillBadge key={skill} skill={skill} />)}</div><button className="member-message" type="button" title={`Message ${member.name}`}><MessageSquare size={15} /></button></div>)}</div><div className="open-slot"><UserPlus size={16} /><span>2 spaces left for the right builders</span></div></div>
 
-          {/* 10 Member Grid */}
-          <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-white">Roster <span className="text-slate-500 font-mono text-sm ml-2">({mockMembers.length}/10 capacity)</span></h3>
-          </div>
+            <div className="chat-panel workspace-panel"><div className="panel-heading"><div><span className="panel-eyebrow">02 / Talk it out</span><h2>Circle chat</h2></div><MessageSquare className="panel-icon" size={20} /></div><div className="message-list">{messages.map((item, index) => <div className="message-row" key={`${item.author}-${index}`}><div className={`message-avatar ${item.color}`}>{item.author === 'You' ? 'YO' : item.author.split(' ').map((part) => part[0]).join('')}</div><div><div className="message-meta"><strong>{item.author}</strong><time>{item.time}</time></div><p>{item.text}</p></div></div>)}</div><form className="chat-form" onSubmit={sendMessage}><input value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Message your circle..." aria-label="Message your circle" /><button type="submit" title="Send message"><Send size={16} /></button></form></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockMembers.map((member) => (
-              <Card key={member.id} className="p-5 flex flex-col h-full">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-slate-700 to-slate-900 border border-slate-700 flex items-center justify-center text-lg font-bold text-slate-300">
-                    {member.name.charAt(0)}
-                  </div>
-                  {member.role === 'COMMUNITY_LEADER' && (
-                    <div className="p-1.5 bg-amber-500/10 rounded-lg border border-amber-500/20 text-amber-400" title="Community Leader">
-                      <Crown className="w-4 h-4" />
-                    </div>
-                  )}
-                </div>
-                
-                <h4 className="font-semibold text-white mb-1">{member.name}</h4>
-                <div className="flex items-center gap-4 text-xs text-slate-400 font-mono mb-4">
-                  <span>DSA: <span className="text-purple-400">{member.dsa}</span></span>
-                </div>
+            <div className="projects-panel workspace-panel"><div className="panel-heading"><div><span className="panel-eyebrow">03 / Make together</span><h2>Shared projects</h2></div><Link className="panel-link" to="/projects">View all <ArrowRight size={15} /></Link></div><div className="project-list"><div className="project-item"><div className="project-symbol"><FolderGit2 size={19} /></div><div className="project-info"><strong>Campus Connect</strong><span>Community discovery platform</span><div className="project-progress"><i style={{ width: '72%' }} /></div><small>72% complete · 3 contributors</small></div><span className="project-status active">Active</span></div><div className="project-item"><div className="project-symbol amber"><FolderGit2 size={19} /></div><div className="project-info"><strong>Open Source Starter</strong><span>A friendly first contribution guide</span><div className="project-progress"><i style={{ width: '38%' }} /></div><small>38% complete · 5 contributors</small></div><span className="project-status planning">Planning</span></div></div></div>
 
-                <div className="flex flex-wrap gap-1.5 mt-auto mb-5">
-                  {member.skills.slice(0,2).map(skill => (
-                    <span key={skill} className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-[10px]">{skill}</span>
-                  ))}
-                  {member.skills.length > 2 && <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-400 text-[10px]">+{member.skills.length - 2}</span>}
-                </div>
-
-                <div className="flex gap-2 pt-4 border-t border-slate-800/80 mt-auto">
-                  <button className="flex-1 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 border border-slate-800">
-                    <MessageSquare className="w-3.5 h-3.5" /> DM
-                  </button>
-                  <button className="flex-1 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold transition-colors flex items-center justify-center gap-1.5 border border-slate-800">
-                    <Mail className="w-3.5 h-3.5" /> Invite
-                  </button>
-                </div>
-              </Card>
-            ))}
-            
-            {/* Empty Slots */}
-            {Array.from({ length: 10 - mockMembers.length }).map((_, i) => (
-              <div key={`empty-${i}`} className="p-6 rounded-2xl border-2 border-dashed border-slate-800 flex flex-col items-center justify-center text-center h-full min-h-[250px] bg-slate-900/20">
-                <div className="w-10 h-10 rounded-full bg-slate-900 flex items-center justify-center mb-3">
-                  <Users className="w-4 h-4 text-slate-500" />
-                </div>
-                <h4 className="text-sm font-semibold text-slate-400">Open Slot</h4>
-                <p className="text-xs text-slate-500 mt-1 max-w-[120px]">Awaiting algorithm match</p>
-              </div>
-            ))}
-          </div>
+            <div className="assessment-panel workspace-panel"><div className="panel-heading"><div><span className="panel-eyebrow">04 / Gate the circle</span><h2>Member assessment</h2></div><ShieldCheck className="panel-icon orange" size={21} /></div><p className="assessment-copy">Every new member completes a short skill and collaboration test before the leader approves their place.</p>{applicantStatus === 'pending' ? <div className="applicant-row"><div className="member-avatar violet">JM</div><div><strong>Jordan Miller</strong><span>Applied 2 hours ago · Frontend track</span></div><button className="review-button" type="button" onClick={() => setAssessmentOpen(true)}>Review test <ArrowRight size={14} /></button></div> : <div className={`decision-note ${applicantStatus}`}><CheckCircle2 size={17} /> Jordan Miller {applicantStatus === 'approved' ? 'approved for the next open spot.' : 'application declined.'}</div>}</div>
+          </section>
+          </>}
         </main>
       </div>
+      {assessmentOpen && <div className="assessment-overlay" role="dialog" aria-modal="true" aria-labelledby="assessment-title"><div className="assessment-modal"><button className="close-assessment" type="button" onClick={() => setAssessmentOpen(false)} aria-label="Close assessment"><X size={18} /></button><span className="panel-eyebrow">Applicant review / 01</span><h2 id="assessment-title">Jordan's entry test</h2><p className="modal-subtitle">A leader reviews the same three prompts for every applicant before approving a new member.</p><div className="test-question"><span>01</span><p>How would you split the first version of a team project?</p><strong>Answered: Define the smallest useful feature, assign clear owners, and ship it in a short loop.</strong></div><div className="test-question"><span>02</span><p>Which part of the stack would you contribute first?</p><strong>Answered: React and accessible UI, with a willingness to pair on backend work.</strong></div><div className="test-score"><Clock3 size={15} /> Collaboration score <strong>8.6 / 10</strong></div><div className="modal-actions"><button className="decline-button" type="button" onClick={() => { setApplicantStatus('declined'); setAssessmentOpen(false); }}>Decline</button><button className="approve-button" type="button" onClick={() => { setApplicantStatus('approved'); setAssessmentOpen(false); }}><Check size={16} /> Approve member</button></div></div></div>}
+      {createOpen && <div className="assessment-overlay" role="dialog" aria-modal="true" aria-labelledby="create-community-title"><div className="assessment-modal create-modal"><button className="close-assessment" type="button" onClick={() => setCreateOpen(false)} aria-label="Close create community form"><X size={18} /></button><span className="panel-eyebrow">Community setup / 01</span><h2 id="create-community-title">Create your community</h2><p className="modal-subtitle">Tell future members what you are building and who they will build it with.</p><form className="create-community-form" onSubmit={createCommunity}><label>Community name<input required value={draftCommunity.name} onChange={(event) => setDraftCommunity({ ...draftCommunity, name: event.target.value })} placeholder="e.g. Campus Builders" /></label><label>Technologies used<input required value={draftCommunity.technologies} onChange={(event) => setDraftCommunity({ ...draftCommunity, technologies: event.target.value })} placeholder="React, Python, Firebase" /><small>Separate technologies with commas.</small></label><label>Community description<textarea required rows="4" value={draftCommunity.description} onChange={(event) => setDraftCommunity({ ...draftCommunity, description: event.target.value })} placeholder="What will members learn and build together?" /></label><button className="approve-button" type="submit"><Check size={16} /> Publish community</button></form></div></div>}
     </div>
   );
 }

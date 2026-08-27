@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useAuthStore } from './store/useAuthStore';
 
 import Landing from './pages/Landing';
@@ -25,7 +26,8 @@ import Settings from './pages/Settings';
 // Protected Route Guard
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-  return isAuthenticated ? children : <Navigate to="/auth/login" replace />;
+  const location = useLocation();
+  return isAuthenticated ? children : <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 
 export default function AppRoutes() {

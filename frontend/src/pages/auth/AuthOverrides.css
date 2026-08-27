@@ -1,0 +1,2 @@
+.auth-form-panel a:hover, .auth-form-panel a:focus-visible { color: #ed4821; text-decoration: none; }
+.auth-submit:hover, .auth-submit:focus-visible { background: #ed4821; transform: translateY(-2px); text-decoration: none; }
