@@ -11,7 +11,11 @@ import {
   Zap,
   Flame,
   LogOut
+  , ChevronLeft
+  , ChevronRight
+  , Menu
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,14 +34,29 @@ export default function Sidebar() {
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
   const navigate = useNavigate();
+  const [collapsed, setCollapsed] = useState(() => localStorage.getItem('decad_sidebar_collapsed') === 'true');
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.toggle('sidebar-is-collapsed', collapsed);
+    localStorage.setItem('decad_sidebar_collapsed', String(collapsed));
+    return () => document.body.classList.remove('sidebar-is-collapsed');
+  }, [collapsed]);
 
   const handleLogout = () => {
     logout();
     navigate('/');
   };
 
+  const closeMobile = () => setMobileOpen(false);
+
   return (
-    <aside className="app-sidebar w-64 h-screen fixed left-0 top-0 bg-slate-950/80 backdrop-blur-xl border-r border-slate-800/80 flex flex-col z-30">
+    <>
+      <button className="mobile-sidebar-toggle" type="button" onClick={() => setMobileOpen(true)} aria-label="Open navigation">
+        <Menu size={20} />
+      </button>
+      {mobileOpen && <button className="sidebar-backdrop" type="button" onClick={closeMobile} aria-label="Close navigation" />}
+    <aside className={`app-sidebar w-64 h-screen fixed left-0 top-0 bg-slate-950/80 backdrop-blur-xl border-r border-slate-800/80 flex flex-col z-30 ${collapsed ? 'is-collapsed' : ''} ${mobileOpen ? 'is-mobile-open' : ''}`}>
       {/* Brand Header */}
       <div className="p-6 flex items-center gap-3 border-b border-stone-700/50">
           <div className="w-10 h-10 rounded-xl bg-[#ff542b] p-[1px] shadow-lg shadow-orange-500/20">
@@ -45,7 +64,7 @@ export default function Sidebar() {
               <Zap className="w-5 h-5 text-[#ff542b] fill-orange-400/20" />
             </div>
           </div>
-        <div>
+        <div className="sidebar-brand-copy">
             <h1
               className="font-bold text-lg tracking-tight text-white"
               style={{ margin: 0, maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '1.125rem', lineHeight: 1.2, color: '#ffffff' }}
@@ -57,6 +76,10 @@ export default function Sidebar() {
         </div>
       </div>
 
+      <button className="sidebar-collapse-toggle" type="button" onClick={() => setCollapsed(!collapsed)} aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'} title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>
+        {collapsed ? <ChevronRight size={16} /> : <ChevronLeft size={16} />}
+      </button>
+
       {/* Nav List */}
       <nav className="flex-1 px-4 pt-5 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
@@ -65,6 +88,8 @@ export default function Sidebar() {
             <NavLink
               key={item.path}
               to={item.path}
+              title={collapsed ? item.name : undefined}
+              onClick={closeMobile}
               className={({ isActive }) =>
                 `sidebar-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium transition-all duration-200 ${
                   isActive
@@ -96,10 +121,12 @@ export default function Sidebar() {
         className="mx-4 mb-5 flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:text-orange-400 hover:bg-slate-900/60 transition-all duration-200"
         type="button"
         onClick={handleLogout}
+        title={collapsed ? 'Logout' : undefined}
       >
         <LogOut className="w-4 h-4" />
         <span>Logout</span>
       </button>
     </aside>
+    </>
   );
 }

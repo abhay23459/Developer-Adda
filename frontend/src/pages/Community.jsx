@@ -1,47 +1,58 @@
-import { useState } from 'react';
-import { ArrowRight, Check, CheckCircle2, Clock3, Crown, FolderGit2, MessageSquare, Send, ShieldCheck, UserPlus, X } from 'lucide-react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { Award, Bookmark, CalendarDays, Check, Heart, MessageCircle, MoreHorizontal, Plus, Search, Send, Sparkles, TrendingUp, UsersRound, X } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-import SkillBadge from '../components/SkillBadge';
 import { useAuthStore } from '../store/useAuthStore';
 import './Community.css';
 import './CommunityCreate.css';
 
-const members = [
-  { name: 'Alex Rivera', role: 'Leader', skills: ['React', 'Node.js'], color: 'coral' },
-  { name: 'Sarah Chen', role: 'Member', skills: ['Python', 'Django'], color: 'sage' },
-  { name: 'Rahul Sharma', role: 'Member', skills: ['React Native', 'Firebase'], color: 'gold' },
-  { name: 'Priya Patel', role: 'Member', skills: ['MongoDB', 'AWS'], color: 'blue' },
-  { name: 'Vikram Singh', role: 'Member', skills: ['C++', 'Algorithms'], color: 'lavender' },
-  { name: 'Anita Desai', role: 'Member', skills: ['Figma', 'Tailwind'], color: 'peach' },
-  { name: 'Karan Kumar', role: 'Member', skills: ['Java', 'Spring'], color: 'mint' },
-  { name: 'Neha Gupta', role: 'Member', skills: ['Docker', 'Kubernetes'], color: 'rose' },
+const topics = ['All posts', 'Show & tell', 'Help desk', 'Study rooms', 'Opportunities'];
+
+const initialPosts = [
+  { id: 1, author: 'Maya Patel', initials: 'MP', role: 'Frontend builder', time: '18 min ago', topic: 'Show & tell', title: 'I made my first accessible component library', body: 'After three weeks of learning ARIA patterns, I finally shipped a tiny library for our campus projects. The hardest part was making the API feel simple.', tags: ['React', 'Accessibility'], likes: 42, comments: 8, color: 'coral', liked: false, saved: false },
+  { id: 2, author: 'Theo Brooks', initials: 'TB', role: 'Community mentor', time: '1 hr ago', topic: 'Help desk', title: 'What is your go-to way to learn a new codebase?', body: 'I am putting together a lightweight onboarding guide for our next build sprint. Looking for the rituals that help you find your footing quickly.', tags: ['Learning', 'Open question'], likes: 28, comments: 14, color: 'teal', liked: false, saved: false },
+  { id: 3, author: 'Aisha Khan', initials: 'AK', role: 'Backend builder', time: '3 hrs ago', topic: 'Study rooms', title: 'Sunday system design room is open', body: 'We will sketch a notification system together, compare tradeoffs, and leave with one clean diagram. Beginners are very welcome.', tags: ['System design', 'This Sunday'], likes: 19, comments: 6, color: 'violet', liked: false, saved: false },
 ];
 
-const initialMessages = [
-  { author: 'Sarah Chen', text: 'I pushed the first API draft. Can someone take a look?', time: '10:42 AM', color: 'sage' },
-  { author: 'Alex Rivera', text: 'On it. I will review the auth flow before lunch.', time: '10:45 AM', color: 'coral' },
-  { author: 'Rahul Sharma', text: 'The mobile screens are ready for a quick sync.', time: '10:51 AM', color: 'gold' },
+const people = [
+  { name: 'Jordan Lee', detail: 'React + TypeScript', initials: 'JL', color: 'gold' },
+  { name: 'Nia Okafor', detail: 'Python + Data', initials: 'NO', color: 'blue' },
+  { name: 'Sam Wilson', detail: 'Product design', initials: 'SW', color: 'peach' },
 ];
 
 export default function Community() {
   const [searchParams] = useSearchParams();
   const user = useAuthStore((state) => state.user);
   const setCommunity = useAuthStore((state) => state.setCommunity);
-  const [messages, setMessages] = useState(initialMessages);
-  const [message, setMessage] = useState('');
-  const [assessmentOpen, setAssessmentOpen] = useState(false);
-  const [applicantStatus, setApplicantStatus] = useState('pending');
+  const [community, setLocalCommunity] = useState(user?.community ? { name: user.community, technologies: user.communityTechnologies || [], description: user.communityDescription || 'A focused space for builders learning in public.' } : null);
   const [createOpen, setCreateOpen] = useState(searchParams.get('create') === '1');
-  const [community, setLocalCommunity] = useState(user?.community ? { name: user.community, technologies: user.communityTechnologies || [], description: user.communityDescription || 'A focused group for builders who want to learn in public, pair on useful projects, and ship together.' } : null);
+  const [activeTopic, setActiveTopic] = useState('All posts');
+  const [search, setSearch] = useState('');
+  const [posts, setPosts] = useState(initialPosts);
+  const [draft, setDraft] = useState('');
+  const [following, setFollowing] = useState([]);
   const [draftCommunity, setDraftCommunity] = useState({ name: '', technologies: '', description: '' });
 
-  const sendMessage = (event) => {
+  const visiblePosts = useMemo(() => posts.filter((post) => {
+    const matchesTopic = activeTopic === 'All posts' || post.topic === activeTopic;
+    const searchText = `${post.title} ${post.body} ${post.author} ${post.tags.join(' ')}`.toLowerCase();
+    return matchesTopic && searchText.includes(search.toLowerCase());
+  }), [activeTopic, posts, search]);
+
+  const togglePostValue = (postId, key) => {
+    setPosts((current) => current.map((post) => {
+      if (post.id !== postId) return post;
+      const nextValue = !post[key];
+      return { ...post, [key]: nextValue, ...(key === 'liked' ? { likes: post.likes + (nextValue ? 1 : -1) } : {}) };
+    }));
+  };
+
+  const publishPost = (event) => {
     event.preventDefault();
-    if (!message.trim()) return;
-    setMessages([...messages, { author: 'You', text: message.trim(), time: 'Just now', color: 'coral' }]);
-    setMessage('');
+    if (!draft.trim()) return;
+    setPosts((current) => [{ id: Date.now(), author: 'You', initials: 'YO', role: 'Community member', time: 'Just now', topic: 'Show & tell', title: 'A fresh note from the community', body: draft.trim(), tags: ['New post'], likes: 0, comments: 0, color: 'orange', liked: false, saved: false }, ...current]);
+    setDraft('');
   };
 
   const createCommunity = (event) => {
@@ -53,24 +64,24 @@ export default function Community() {
     setCreateOpen(false);
   };
 
+  const toggleFollow = (name) => setFollowing((current) => current.includes(name) ? current.filter((item) => item !== name) : [...current, name]);
+
   return (
     <div className="app-page community-page">
       {community && <Sidebar />}
-      <div className={`app-content ${community ? '' : 'community-precreate'}`}><Navbar />
+      <div className={`app-content ${community ? '' : 'community-precreate'}`}>
+        <Navbar pageTitle={community ? 'Community' : ''} />
         <main className="community-main">
-          {!community && <section className="community-empty-state"><span className="community-kicker">Your community space</span><h1>Create your community</h1><p>Start a focused space where up to 10 members can meet, take an entry test, chat, and build projects together.</p><button className="create-community-button" type="button" onClick={() => setCreateOpen(true)}>Open your table <ArrowRight size={15} /></button></section>}
-          {community && <>
-            <section className="community-hero"><div><span className="community-kicker">Your table / live workspace</span><h1>{community.name}</h1><p>{community.description}</p><div className="community-tech-list">{community.technologies.map((technology) => <SkillBadge key={technology} skill={technology} level={null} />)}</div></div><div className="community-hero-actions"><button className="create-community-button" type="button" onClick={() => setCreateOpen(true)}>New community <ArrowRight size={15} /></button><span className="last-sync"><i /> Synced just now</span></div></section>
-            <section className="community-pulse"><div><span>Seats filled</span><strong>08 <small>/ 10</small></strong><i className="pulse-bar"><b /></i></div><div><span>Active today</span><strong>06</strong><em>members online</em></div><div><span>Build streak</span><strong>12 <small>days</small></strong><em className="warm">Keep it going</em></div><div className="pulse-note"><span>Next table check-in</span><strong>Today, 6:30 PM</strong><em>Weekly build review</em></div></section>
-            <section className="community-layout">
-              <div className="members-board"><div className="board-heading"><div><span className="panel-eyebrow">01 / The circle</span><h2>People at the table</h2></div><span className="online-count"><i /> 6 online</span></div><div className="member-list">{members.map((member) => <div className="member-row" key={member.name}><div className={`member-avatar ${member.color}`}>{member.name.split(' ').map((part) => part[0]).join('')}</div><div className="member-info"><strong>{member.name}{member.role === 'Leader' && <Crown size={13} />}</strong><span>{member.role}</span></div><div className="member-skills">{member.skills.map((skill) => <SkillBadge key={skill} skill={skill} />)}</div><button className="member-message" type="button" title={`Message ${member.name}`}><MessageSquare size={15} /></button></div>)}</div><div className="open-slot"><UserPlus size={16} /><span>2 spaces left for the right builders</span><ArrowRight size={15} /></div></div>
-              <aside className="activity-rail"><div className="board-heading"><div><span className="panel-eyebrow">02 / Talk it out</span><h2>Live activity</h2></div><MessageSquare className="panel-icon" size={19} /></div><div className="message-list">{messages.map((item, index) => <div className="message-row" key={`${item.author}-${index}`}><div className={`message-avatar ${item.color}`}>{item.author === 'You' ? 'YO' : item.author.split(' ').map((part) => part[0]).join('')}</div><div><div className="message-meta"><strong>{item.author}</strong><time>{item.time}</time></div><p>{item.text}</p></div></div>)}</div><form className="chat-form" onSubmit={sendMessage}><input value={message} onChange={(event) => setMessage(event.target.value)} placeholder="Message your circle..." aria-label="Message your circle" /><button type="submit" title="Send message"><Send size={16} /></button></form></aside>
-            </section>
-            <section className="community-bottom"><div className="project-deck"><div className="board-heading"><div><span className="panel-eyebrow">03 / Make together</span><h2>Projects in motion</h2></div><Link className="panel-link" to="/projects">View all <ArrowRight size={15} /></Link></div><div className="project-cards"><article><div className="project-symbol"><FolderGit2 size={18} /></div><div><strong>Campus Connect</strong><span>Community discovery platform</span><i><b style={{ width: '72%' }} /></i><small>72% complete · 3 contributors</small></div><em>Active</em></article><article><div className="project-symbol amber"><FolderGit2 size={18} /></div><div><strong>Open Source Starter</strong><span>A friendly first contribution guide</span><i><b style={{ width: '38%' }} /></i><small>38% complete · 5 contributors</small></div><em className="planning">Planning</em></article></div></div><div className="review-card"><div className="board-heading"><div><span className="panel-eyebrow">04 / Gate the circle</span><h2>One application</h2></div><ShieldCheck className="panel-icon" size={19} /></div><p>Every new member completes a short skill and collaboration test before joining.</p>{applicantStatus === 'pending' ? <div className="applicant-row"><div className="member-avatar violet">JM</div><div><strong>Jordan Miller</strong><span>Frontend track · applied 2h ago</span></div><button className="review-button" type="button" onClick={() => setAssessmentOpen(true)}>Review <ArrowRight size={14} /></button></div> : <div className={`decision-note ${applicantStatus}`}><CheckCircle2 size={17} /> Jordan Miller {applicantStatus === 'approved' ? 'approved.' : 'application declined.'}</div>}</div></section>
+          {!community ? <section className="community-empty-state"><div className="empty-orbit"><Sparkles size={22} /></div><span className="community-kicker">Your people, in one place</span><h1>Create your community</h1><p>Start a focused space where curious builders can meet, learn out loud, and ship useful things together.</p><button className="community-primary" type="button" onClick={() => setCreateOpen(true)}>Create a community <Plus size={16} /></button></section> : <>
+            <section className="community-welcome"><div><span className="community-kicker">{community.name} / community hub</span><h1>Good ideas travel<br /><em>faster together.</em></h1><p>{community.description}</p><div className="welcome-meta"><span><UsersRound size={15} /> 128 builders</span><span><TrendingUp size={15} /> 12 day streak</span><span><CalendarDays size={15} /> Next meetup Sunday</span></div></div><div className="welcome-art"><div className="orbit orbit-one" /><div className="orbit orbit-two" /><span>08<br /><small>online now</small></span></div></section>
+            <section className="community-toolbar"><div className="topic-tabs">{topics.map((topic) => <button className={activeTopic === topic ? 'is-active' : ''} key={topic} type="button" onClick={() => setActiveTopic(topic)}>{topic}</button>)}</div><label className="community-search"><Search size={16} /><input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Search discussions" aria-label="Search discussions" /></label></section>
+            <div className="community-grid">
+              <section className="community-feed"><form className="post-composer" onSubmit={publishPost}><div className="composer-avatar">YO</div><div className="composer-body"><textarea value={draft} onChange={(event) => setDraft(event.target.value)} placeholder="Share a win, ask a question, or start a conversation..." aria-label="Create a community post" rows="2" /><div className="composer-footer"><span>Be generous with context.</span><button type="submit"><Send size={15} /> Publish</button></div></div></form>{visiblePosts.length ? visiblePosts.map((post) => <article className="community-post" key={post.id}><div className={`post-avatar ${post.color}`}>{post.initials}</div><div className="post-content"><div className="post-heading"><div><strong>{post.author}</strong><span>{post.role} · {post.time}</span></div><button className="icon-button" type="button" aria-label={`More options for ${post.author}`}><MoreHorizontal size={18} /></button></div><span className="post-topic">{post.topic}</span><h2>{post.title}</h2><p>{post.body}</p><div className="post-tags">{post.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div><div className="post-actions"><button className={post.liked ? 'selected' : ''} type="button" onClick={() => togglePostValue(post.id, 'liked')}><Heart size={16} fill={post.liked ? 'currentColor' : 'none'} /> {post.likes}</button><button type="button"><MessageCircle size={16} /> {post.comments}</button><button className={post.saved ? 'selected' : ''} type="button" onClick={() => togglePostValue(post.id, 'saved')}><Bookmark size={16} fill={post.saved ? 'currentColor' : 'none'} /> {post.saved ? 'Saved' : 'Save'}</button></div></div></article>) : <div className="no-results"><Search size={20} /><strong>No conversations found</strong><span>Try another topic or search term.</span></div>}</section>
+              <aside className="community-aside"><section className="aside-card next-event"><div className="aside-heading"><span>Coming up</span><CalendarDays size={16} /></div><div className="event-date"><strong>24</strong><span>JUN<br /><small>SUN</small></span></div><h3>Build together: API design</h3><p>60 min · Live room · 14 going</p><button type="button" className="event-button">Reserve a seat <Plus size={15} /></button></section><section className="aside-card"><div className="aside-heading"><span>People to meet</span><button type="button" className="text-button">View all</button></div><div className="people-list">{people.map((person) => <div className="person-row" key={person.name}><div className={`post-avatar small ${person.color}`}>{person.initials}</div><div><strong>{person.name}</strong><span>{person.detail}</span></div><button className={following.includes(person.name) ? 'following' : ''} type="button" onClick={() => toggleFollow(person.name)}>{following.includes(person.name) ? 'Following' : 'Follow'}</button></div>)}</div></section><section className="aside-card trending-card"><div className="aside-heading"><span>Trending this week</span><TrendingUp size={16} /></div><ol><li><span>#buildinpublic</span><small>84 conversations</small></li><li><span>#firstjob</span><small>51 conversations</small></li><li><span>#opensource</span><small>38 conversations</small></li></ol></section><section className="aside-card achievement-card"><div className="achievement-icon"><Award size={19} /></div><div><span className="achievement-label">Community win</span><h3>100 builders shipped</h3><p>Our members launched 24 projects this month.</p></div><div className="achievement-progress"><i><b /></i><span>82% to the next milestone</span></div></section></aside>
+            </div>
           </>}
         </main>
       </div>
-      {assessmentOpen && <div className="assessment-overlay" role="dialog" aria-modal="true" aria-labelledby="assessment-title"><div className="assessment-modal"><button className="close-assessment" type="button" onClick={() => setAssessmentOpen(false)} aria-label="Close assessment"><X size={18} /></button><span className="panel-eyebrow">Applicant review / 01</span><h2 id="assessment-title">Jordan's entry test</h2><p className="modal-subtitle">A leader reviews the same three prompts for every applicant before approving a new member.</p><div className="test-question"><span>01</span><p>How would you split the first version of a team project?</p><strong>Answered: Define the smallest useful feature, assign clear owners, and ship it in a short loop.</strong></div><div className="test-question"><span>02</span><p>Which part of the stack would you contribute first?</p><strong>Answered: React and accessible UI, with a willingness to pair on backend work.</strong></div><div className="test-score"><Clock3 size={15} /> Collaboration score <strong>8.6 / 10</strong></div><div className="modal-actions"><button className="decline-button" type="button" onClick={() => { setApplicantStatus('declined'); setAssessmentOpen(false); }}>Decline</button><button className="approve-button" type="button" onClick={() => { setApplicantStatus('approved'); setAssessmentOpen(false); }}><Check size={16} /> Approve member</button></div></div></div>}
       {createOpen && <div className="assessment-overlay" role="dialog" aria-modal="true" aria-labelledby="create-community-title"><div className="assessment-modal create-modal"><button className="close-assessment" type="button" onClick={() => setCreateOpen(false)} aria-label="Close create community form"><X size={18} /></button><span className="panel-eyebrow">Community setup / 01</span><h2 id="create-community-title">Create your community</h2><p className="modal-subtitle">Tell future members what you are building and who they will build it with.</p><form className="create-community-form" onSubmit={createCommunity}><label>Community name<input required value={draftCommunity.name} onChange={(event) => setDraftCommunity({ ...draftCommunity, name: event.target.value })} placeholder="e.g. Campus Builders" /></label><label>Technologies used<input required value={draftCommunity.technologies} onChange={(event) => setDraftCommunity({ ...draftCommunity, technologies: event.target.value })} placeholder="React, Python, Firebase" /><small>Separate technologies with commas.</small></label><label>Community description<textarea required rows="4" value={draftCommunity.description} onChange={(event) => setDraftCommunity({ ...draftCommunity, description: event.target.value })} placeholder="What will members learn and build together?" /></label><button className="approve-button" type="submit"><Check size={16} /> Publish community</button></form></div></div>}
     </div>
   );
