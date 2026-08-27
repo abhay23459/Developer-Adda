@@ -1,9 +1,9 @@
 const variants = {
-  primary: "bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/25 border border-indigo-500/30",
-  secondary: "bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-800",
-  gradient: "bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 hover:opacity-95 text-white shadow-lg shadow-indigo-500/20",
-  outline: "bg-transparent hover:bg-slate-900 text-indigo-400 border border-indigo-500/30",
-  ghost: "bg-transparent hover:bg-slate-800/50 text-slate-400 hover:text-white"
+  primary: "bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-600/25 border border-orange-500/30",
+  secondary: "bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300",
+  gradient: "bg-orange-600 hover:bg-orange-500 text-white shadow-lg shadow-orange-500/20",
+  outline: "bg-transparent hover:bg-orange-50 text-orange-600 border border-orange-300",
+  ghost: "bg-transparent hover:bg-stone-100 text-stone-500 hover:text-stone-900"
 };
 
 const sizes = {

@@ -6,6 +6,7 @@ import { Users, Code2, Award, ArrowUpRight, CheckCircle2, Trophy, Clock } from '
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import { useAuthStore } from '../store/useAuthStore';
 import { Link } from 'react-router-dom';
+import './Dashboard.css';
 
 const analyticsData = [
   { day: 'Mon', dsaScore: 120, projectPoints: 80 },
@@ -34,20 +35,20 @@ export default function Dashboard() {
                 Welcome back, {user?.name?.split(' ')[0] || "Developer"} 👋
               </h1>
               <p className="text-slate-400 text-sm">
-                Your community <span className="text-indigo-400 font-semibold">{user?.community || 'No community yet'}</span> is currently ranked #4 globally.
+                Your community <span className="text-orange-600 font-semibold">{user?.community || 'No community yet'}</span> is currently ranked #4 globally.
               </p>
             </div>
             <div className="flex items-center gap-3">
               <Link
                 to="/community?create=1"
-                className="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-orange-600/30 flex items-center gap-2"
+                className="dashboard-action px-5 py-2.5 bg-orange-600 hover:bg-orange-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-orange-600/30 flex items-center gap-2"
               >
                 <span>Create Community</span>
                 <Users className="w-4 h-4" />
               </Link>
               <Link
                 to="/compiler"
-                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-2"
+                className="dashboard-action secondary px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-2"
               >
                 <span>Quick Sandbox</span>
                 <ArrowUpRight className="w-4 h-4" />

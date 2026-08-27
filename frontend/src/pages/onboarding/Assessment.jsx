@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
+import Navbar from '../../components/Navbar';
 import { useAuthStore } from '../../store/useAuthStore';
 
 const mockQuestions = [
@@ -25,6 +26,7 @@ export default function Assessment() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-6 font-sans">
+      <Navbar />
       <div className="w-full max-w-xl bg-slate-900/60 border border-slate-800 p-8 rounded-2xl backdrop-blur-xl shadow-2xl">
         <h2 className="text-2xl font-bold text-white mb-2">Initial Skill Assessment</h2>
         <p className="text-slate-400 text-sm mb-6">Answer these quick questions to generate your baseline DSA Rating.</p>

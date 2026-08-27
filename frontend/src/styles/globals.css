@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  :root { color-scheme: dark; }
-  body { margin: 0; min-width: 320px; min-height: 100vh; background: #151515; }
+  :root { color-scheme: light; }
+  body { margin: 0; min-width: 320px; min-height: 100vh; background: #f1eee8; }
   *, *::before, *::after { box-sizing: border-box; }
   button, a { font: inherit; }
 }
@@ -44,7 +44,59 @@
 
 /* Custom Glassmorphism Utility Class */
 .glass-panel {
-  @apply bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl;
+  @apply bg-white border border-stone-200 backdrop-blur-xl;
+}
+
+/* Shared authenticated workspace language. */
+.app-page,
+.min-h-screen.bg-slate-950 {
+  background: #f1eee8 !important;
+  color: #242321 !important;
+}
+
+.app-sidebar {
+  background: #191918 !important;
+  border-color: #363531 !important;
+  box-shadow: 12px 0 32px rgba(31, 29, 25, .08);
+}
+
+.app-sidebar .text-white { color: #f1eee8 !important; }
+.app-sidebar .text-slate-500 { color: #8e8981 !important; }
+.app-sidebar .text-slate-400 { color: #aaa49b !important; }
+.app-sidebar .hover\:bg-slate-900\/60:hover { background: #252421 !important; }
+.app-sidebar .bg-slate-950 { background: #191918 !important; }
+
+.app-content,
+.min-h-screen.bg-slate-950 .flex-1 { background: #f1eee8; }
+.bg-glow-radial { background: radial-gradient(circle at 72% 0%, rgba(255, 84, 43, .08), transparent 34%), #f1eee8 !important; }
+.glass-card { background: #fff !important; border-color: #ded9d0 !important; box-shadow: 0 12px 30px rgba(54, 47, 38, .06); }
+.glass-card .text-white { color: #242321 !important; }
+.glass-card .text-slate-400 { color: #827c73 !important; }
+.glass-card .text-slate-200 { color: #35322e !important; }
+.glass-card .bg-slate-900\/50 { background: #f7f5f1 !important; border-color: #e6e1d9 !important; }
+.glass-card .bg-slate-800 { background: #e7e1d8 !important; }
+.app-page-title { color: #827c73; font: 500 11px/1 'DM Mono', monospace; letter-spacing: 1px; text-transform: uppercase; }
+.min-h-screen.bg-slate-950 main h1 { font-family: 'Space Grotesk', sans-serif; letter-spacing: -1.5px; }
+.min-h-screen.bg-slate-950 main h2,
+.min-h-screen.bg-slate-950 main h3,
+.min-h-screen.bg-slate-950 main h4,
+.min-h-screen.bg-slate-950 main h5 { color: #292724 !important; }
+.min-h-screen.bg-slate-950 main .text-slate-200 { color: #35322e !important; }
+.min-h-screen.bg-slate-950 main .text-slate-300 { color: #6e685f !important; }
+.min-h-screen.bg-slate-950 main .text-slate-400 { color: #827c73 !important; }
+.min-h-screen.bg-slate-950 main .text-slate-500 { color: #9a938a !important; }
+.min-h-screen.bg-slate-950 main .bg-slate-900\/40,
+.min-h-screen.bg-slate-950 main .bg-slate-900\/90 { background: #fff !important; border-color: #ded9d0 !important; }
+.min-h-screen.bg-slate-950 main .bg-slate-950\/50 { background: #f7f5f1 !important; }
+.min-h-screen.bg-slate-950 main .border-slate-800 { border-color: #ded9d0 !important; }
+.min-h-screen.bg-slate-950 main input,
+.min-h-screen.bg-slate-950 main textarea,
+.min-h-screen.bg-slate-950 main select { background: #fff; border-color: #d6d0c6; color: #292724; }
+.min-h-screen.bg-slate-950 main input::placeholder,
+.min-h-screen.bg-slate-950 main textarea::placeholder { color: #9a938a; }
+
+@media (max-width: 900px) {
+  .app-sidebar { display: none; }
 }
 
 @media (max-width: 900px) {
@@ -74,3 +126,173 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Decad workspace shell overrides shared by every authenticated route. */
+.app-page,
+.min-h-screen.bg-slate-950 {
+  font-family: 'Space Grotesk', sans-serif !important;
+  color: #07123a !important;
+}
+
+.app-sidebar {
+  width: 250px !important;
+  padding: 0 !important;
+  background: #14152f !important;
+  border-right: 1px solid #2d3158 !important;
+  box-shadow: none !important;
+}
+
+.app-sidebar > div:first-child {
+  padding: 22px 20px !important;
+  border-bottom: 1px solid #2d3158 !important;
+}
+
+.app-sidebar > div:first-child > div:first-child {
+  width: 31px !important;
+  height: 31px !important;
+  border: 2px dotted #2bbda9 !important;
+  border-radius: 50% !important;
+  background: #14152f !important;
+  box-shadow: none !important;
+}
+
+.app-sidebar > div:first-child > div:first-child > div { background: transparent !important; }
+.app-sidebar nav { padding: 22px 14px 0 !important; }
+.app-sidebar .sidebar-nav-link { margin-bottom: 3px; padding: 11px 13px !important; border: 1px solid transparent !important; border-radius: 8px !important; color: #aab4df !important; }
+.app-sidebar .sidebar-nav-link:hover { color: #fff !important; background: #202246 !important; }
+.app-sidebar .sidebar-nav-link[aria-current='page'] { color: #14152f !important; background: #f7a82f !important; border-color: #f7a82f !important; box-shadow: none !important; }
+.app-sidebar .sidebar-nav-link[aria-current='page'] svg { color: #14152f !important; }
+.app-sidebar > div:nth-last-of-type(1) { margin: 0 14px 14px !important; padding: 15px !important; border: 1px solid #3a3d68 !important; border-radius: 10px !important; background: #202246 !important; }
+.app-sidebar > button { margin: 0 14px 18px !important; padding: 11px 13px !important; border-radius: 8px !important; color: #aab4df !important; }
+.app-sidebar > button:hover { color: #f7a82f !important; background: #202246 !important; }
+
+.min-h-screen.bg-slate-950 > .flex-1,
+.app-content { margin-left: 250px; background: #faf6ed !important; }
+.min-h-screen.bg-slate-950 > .flex-1 > .flex { background: #faf6ed !important; border-color: #e3ded3 !important; }
+.min-h-screen.bg-slate-950 main { background: #faf6ed !important; }
+.glass-card, .workspace-panel, .capacity-card { border-radius: 12px !important; border-color: #e5dfd3 !important; background: #fff !important; box-shadow: 0 12px 24px rgba(43, 39, 25, .08) !important; }
+.glass-card .bg-slate-900\/50 { background: #f4f0e8 !important; }
+.min-h-screen.bg-slate-950 main h1,
+.min-h-screen.bg-slate-950 main h2,
+.min-h-screen.bg-slate-950 main h3,
+.min-h-screen.bg-slate-950 main h4 { color: #07123a !important; }
+.min-h-screen.bg-slate-950 main .text-white { color: #07123a !important; }
+.min-h-screen.bg-slate-950 main .text-slate-200 { color: #26365c !important; }
+.min-h-screen.bg-slate-950 main .text-slate-300,
+.min-h-screen.bg-slate-950 main .text-slate-400 { color: #536083 !important; }
+.min-h-screen.bg-slate-950 main input,
+.min-h-screen.bg-slate-950 main textarea,
+.min-h-screen.bg-slate-950 main select { border-radius: 8px !important; background: #fff !important; border-color: #d8d2c7 !important; color: #07123a !important; }
+.min-h-screen.bg-slate-950 main button.bg-indigo-600,
+.min-h-screen.bg-slate-950 main a.bg-indigo-600,
+.min-h-screen.bg-slate-950 main button.bg-orange-600,
+.min-h-screen.bg-slate-950 main a.bg-orange-600 { color: #07123a !important; background: #f7a82f !important; box-shadow: none !important; }
+
+@media (max-width: 900px) {
+  .min-h-screen.bg-slate-950 > .flex-1, .app-content { margin-left: 0 !important; }
+}
+
+.landing-page > main { padding-top: 62px; }
+.auth-page > .auth-layout { padding-top: 134px; }
+.community-page .app-content > .site-header + .community-main { margin-top: 62px; }
+.workspace-header + main { margin-top: 62px; }
+.min-h-screen.bg-slate-950.flex.flex-col > .site-header + div { margin-top: 62px; }
+
+@media (max-width: 900px) {
+  .workspace-header { left: 0; width: 100%; }
+}
+
+/* Global readability tokens. */
+:root {
+  --decad-ink: #07123a;
+  --decad-body: #536083;
+  --decad-paper-text: #faf6ed;
+  --decad-soft-text: #b9c4ea;
+}
+
+body { color: var(--decad-ink); font-size: 17px; }
+button, input, textarea, select { font-size: 1rem; }
+
+/* Light surfaces use dark text. */
+.landing-page,
+.auth-page,
+.app-page,
+.app-content,
+.min-h-screen.bg-slate-950,
+.min-h-screen.bg-slate-950 main,
+.min-h-screen.bg-slate-950.flex.flex-col { color: var(--decad-ink) !important; }
+.landing-page p,
+.auth-page p,
+.app-content p,
+.min-h-screen.bg-slate-950 main p { color: var(--decad-body); }
+.landing-page h1, .landing-page h2, .landing-page h3, .landing-page h4,
+.auth-page h1, .auth-page h2, .auth-page h3, .auth-page h4,
+.app-content h1, .app-content h2, .app-content h3, .app-content h4,
+.min-h-screen.bg-slate-950 main h1, .min-h-screen.bg-slate-950 main h2,
+.min-h-screen.bg-slate-950 main h3, .min-h-screen.bg-slate-950 main h4 { color: var(--decad-ink); }
+
+/* Dark branded sections use light text. */
+.hero-section, .works-section, .colleges-section,
+.hero-section h1, .hero-section h2, .hero-section h3,
+.works-section h1, .works-section h2, .works-section h3,
+.colleges-section h1, .colleges-section h2, .colleges-section h3,
+.app-sidebar { color: var(--decad-paper-text); }
+.landing-page .colleges-section .section-inner h2 { color: #fffaf0 !important; }
+.landing-page .works-section .section-inner h2 { color: #2bbda9 !important; }
+.hero-section p, .works-section p, .colleges-section p,
+.app-sidebar p, .app-sidebar span { color: var(--decad-soft-text); }
+.hero-section a, .works-section a, .colleges-section a,
+.app-sidebar a { color: #8edfd1; }
+.hero-section a:hover, .works-section a:hover, .colleges-section a:hover,
+.app-sidebar a:hover { color: #f7a82f; }
+.hero-section .eyebrow, .works-section .eyebrow, .colleges-section .eyebrow,
+.app-sidebar .panel-eyebrow { color: #2bbda9; }
+.app-sidebar .sidebar-nav-link[aria-current='page'] { color: #14152f !important; }
+.app-sidebar .sidebar-nav-link:not([aria-current='page']):hover { color: #8edfd1 !important; }
+
+/* Make small utility text readable without changing layout geometry. */
+.landing-page .section-inner > p,
+.landing-page .hero-content > p,
+.landing-page .gap-cards p,
+.landing-page .table-card > p,
+.landing-page .story-grid article,
+.auth-page .auth-intro p,
+.auth-page .form-heading p,
+.community-page p { font-size: 1rem; }
+.landing-page .main-nav a,
+.app-site-header .main-nav a,
+.app-page-title,
+.app-sidebar .sidebar-nav-link { font-size: 0.875rem; }
+.landing-page .table-card code,
+.landing-page .story-grid code,
+.community-page code { font-size: 0.75rem; }
+
+/* Light surfaces need ink text; navy surfaces use the softer paper scale. */
+.min-h-screen.bg-slate-950.flex.flex-col {
+  color: #07123a !important;
+  background: #faf6ed !important;
+}
+
+.min-h-screen.bg-slate-950.flex.flex-col > div {
+  border-color: #e5dfd3 !important;
+  background: #fff !important;
+  color: #07123a !important;
+}
+
+.min-h-screen.bg-slate-950.flex.flex-col h2,
+.min-h-screen.bg-slate-950.flex.flex-col h4,
+.min-h-screen.bg-slate-950.flex.flex-col .text-white { color: #07123a !important; }
+.min-h-screen.bg-slate-950.flex.flex-col .text-slate-400 { color: #536083 !important; }
+.min-h-screen.bg-slate-950.flex.flex-col button:not(.bg-indigo-600) { color: #26365c; background: #f5f1e8; border-color: #d8d2c7; }
+.min-h-screen.bg-slate-950.flex.flex-col button.bg-indigo-600 { color: #07123a !important; background: #f7a82f !important; border-color: #f7a82f !important; }
+.min-h-screen.bg-slate-950.flex.flex-col > .site-header { align-self: stretch; width: 100%; }
+
+/* Slightly larger type scale for readability across the workspace. */
+.app-page [class*='text-xs'],
+.min-h-screen [class*='text-xs'] { font-size: 0.8125rem !important; }
+.app-page [class*='text-sm'],
+.min-h-screen [class*='text-sm'] { font-size: 0.9375rem !important; }
+.app-page-title { font-size: 12px; }
+.app-sidebar .text-\[10px\] { font-size: 11px !important; }
+.landing-page .start-banner h3 { color: #fffaf0 !important; }
+.landing-page .start-banner p { color: #d7def3 !important; }

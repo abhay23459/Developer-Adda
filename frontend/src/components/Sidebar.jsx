@@ -39,9 +39,9 @@ export default function Sidebar() {
   return (
     <aside className="app-sidebar w-64 h-screen fixed left-0 top-0 bg-slate-950/80 backdrop-blur-xl border-r border-slate-800/80 flex flex-col z-30">
       {/* Brand Header */}
-      <div className="p-6 flex items-center gap-3">
+      <div className="p-6 flex items-center gap-3 border-b border-stone-700/50">
           <div className="w-10 h-10 rounded-xl bg-[#ff542b] p-[1px] shadow-lg shadow-orange-500/20">
-            <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+            <div className="w-full h-full bg-[#191918] rounded-[11px] flex items-center justify-center">
               <Zap className="w-5 h-5 text-[#ff542b] fill-orange-400/20" />
             </div>
           </div>
@@ -49,16 +49,16 @@ export default function Sidebar() {
             <h1
               className="font-bold text-lg tracking-tight text-white"
               style={{ margin: 0, maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '1.125rem', lineHeight: 1.2, color: '#ffffff' }}
-              title={user?.community || 'Async-Devs-Alpha'}
+              title="Decad"
             >
-              {user?.community || 'Async-Devs-Alpha'}
+              Decad
             </h1>
-          <span className="text-[10px] font-mono tracking-wider text-slate-500 uppercase">Local Build Network</span>
+            <span className="text-[10px] font-mono tracking-wider text-slate-500 uppercase">{user?.community || 'Student build network'}</span>
         </div>
       </div>
 
       {/* Nav List */}
-      <nav className="flex-1 px-4 space-y-1 overflow-y-auto">
+      <nav className="flex-1 px-4 pt-5 space-y-1 overflow-y-auto">
         {navItems.map((item) => {
           const Icon = item.icon;
           return (
@@ -81,7 +81,7 @@ export default function Sidebar() {
       </nav>
 
       {/* Community Status Card */}
-      <div className="p-4 mx-4 mb-4 rounded-xl glass-card border border-indigo-500/10">
+      <div className="p-4 mx-4 mb-4 rounded-xl border border-stone-700 bg-[#242320]">
         <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
           <span className="flex items-center gap-1 font-mono">
             <Flame className="w-3.5 h-3.5 text-amber-500" /> Rank #4

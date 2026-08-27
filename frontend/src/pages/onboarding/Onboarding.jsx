@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
+import Navbar from '../../components/Navbar';
 
 const SKILL_OPTIONS = ['React.js', 'Node.js', 'Python', 'C++', 'Java', 'PostgreSQL', 'MongoDB', 'Docker', 'AWS'];
 
@@ -16,6 +17,7 @@ export default function Onboarding() {
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-6 font-sans">
+      <Navbar />
       <div className="w-full max-w-xl bg-slate-900/60 border border-slate-800 p-8 rounded-2xl backdrop-blur-xl shadow-2xl">
         <h2 className="text-2xl font-bold text-white mb-2">Select Your Tech Stack</h2>
         <p className="text-slate-400 text-sm mb-6">Choose your primary skills so our matching algorithm can assign you to a complementary 10-member team.</p>
