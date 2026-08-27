@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import Card from './Card';
 
 export default function StatCard({ title, value, subtitle, icon: Icon, color = "indigo" }) {

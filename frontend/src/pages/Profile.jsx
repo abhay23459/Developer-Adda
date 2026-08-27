@@ -1,9 +1,9 @@
-import React from 'react';
+ 
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import SkillBadge from '../components/SkillBadge';
-import { User, Shield, Globe, Award } from 'lucide-react';
+import { Shield, Globe, Award } from 'lucide-react';
 import { useAuthStore } from '../store/useAuthStore';
 import { FaGithub } from 'react-icons/fa';
 export default function Profile() {

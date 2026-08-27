@@ -2,7 +2,6 @@ import apiClient from './api';
 
 export const authService = {
   async login(credentials) {
-    try {
       // Real API Endpoint call:
       // const response = await apiClient.post('/auth/login', credentials);
       // return response;
@@ -22,26 +21,18 @@ export const authService = {
           resolve({ success: true, user });
         }, 400);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
-  async register(userData) {
-    try {
+  async register() {
       // return await apiClient.post('/auth/register', userData);
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ success: true, message: 'Account created successfully.' });
         }, 400);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
-  async submitAssessment(answers) {
-    try {
+  async submitAssessment() {
       // return await apiClient.post('/user/assessment', answers);
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -52,17 +43,10 @@ export const authService = {
           });
         }, 500);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
   async getCurrentUser() {
-    try {
-      return await apiClient.get('/auth/me');
-    } catch (error) {
-      throw error;
-    }
+    return await apiClient.get('/auth/me');
   },
 
   logout() {

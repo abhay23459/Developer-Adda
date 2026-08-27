@@ -1,8 +1,5 @@
-import apiClient from './api';
-
 export const communityService = {
   async getCommunityDetails(communityId = 'Async-Devs-Alpha') {
-    try {
       // return await apiClient.get(`/communities/${communityId}`);
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -22,13 +19,9 @@ export const communityService = {
           });
         }, 300);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
-  async getMembers(communityId = 'Async-Devs-Alpha') {
-    try {
+  async getMembers() {
       // return await apiClient.get(`/communities/${communityId}/members`);
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -40,13 +33,9 @@ export const communityService = {
           ]);
         }, 300);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
   async getLeaderboard() {
-    try {
       // return await apiClient.get('/communities/leaderboard');
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -58,8 +47,5 @@ export const communityService = {
           ]);
         }, 350);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 };

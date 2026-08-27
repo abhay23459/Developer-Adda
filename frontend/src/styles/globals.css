@@ -11,6 +11,18 @@
   button, a { font: inherit; }
 }
 
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.leaderboard-page .app-sidebar,
+.community-page .app-sidebar {
+  height: calc(100vh - 24px);
+  top: 12px;
+}
+
 /* Custom Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 6px;

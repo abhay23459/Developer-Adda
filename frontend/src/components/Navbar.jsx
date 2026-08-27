@@ -2,6 +2,7 @@ import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import '../pages/Landing.css';
+import '../landing_page/Navbar.css';
 
 export default function Navbar({ homePath = '/dashboard' }) {
   const [menuOpen, setMenuOpen] = useState(false);

@@ -1,9 +1,9 @@
-import React from 'react';
+ 
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import Button from '../components/Button';
-import { Calendar, Trophy, Users, Rocket, Clock } from 'lucide-react';
+import { Trophy, Rocket, Clock } from 'lucide-react';
 
 export default function Hackathons() {
   return (

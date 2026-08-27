@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 
 export default function SkillBadge({ skill, level = "Intermediate" }) {
   return (

@@ -1,8 +1,5 @@
-import apiClient from './api';
-
 export const projectsService = {
   async getProjects() {
-    try {
       // return await apiClient.get('/projects');
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -30,13 +27,9 @@ export const projectsService = {
           ]);
         }, 300);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
   async getProjectById(projectId) {
-    try {
       // return await apiClient.get(`/projects/${projectId}`);
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -49,21 +42,14 @@ export const projectsService = {
           });
         }, 250);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
   async updateTaskStatus(projectId, taskId, status) {
-    try {
       // return await apiClient.patch(`/projects/${projectId}/tasks/${taskId}`, { status });
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ success: true, taskId, status });
         }, 200);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 };

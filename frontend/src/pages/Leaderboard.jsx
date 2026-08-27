@@ -1,8 +1,8 @@
-import React from 'react';
+ 
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
-import { Trophy, Crown, Flame } from 'lucide-react';
+import { Crown, Flame } from 'lucide-react';
 
 const mockRankings = [
   { rank: 1, name: "ByteStorm Alpha", score: "4,850", members: 10, streak: "14 Days" },
@@ -13,7 +13,7 @@ const mockRankings = [
 
 export default function Leaderboard() {
   return (
-    <div className="min-h-screen bg-slate-950 flex font-sans">
+    <div className="leaderboard-page min-h-screen bg-slate-950 flex font-sans">
       <Sidebar />
       <div className="flex-1 ml-64 flex flex-col">
         <Navbar pageTitle="Global Leaderboard" />

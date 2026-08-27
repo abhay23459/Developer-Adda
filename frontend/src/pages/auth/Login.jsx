@@ -16,7 +16,8 @@ export default function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     await login({ name: 'Alex Rivera', email, role: 'COMMUNITY_LEADER', community: 'Async-Devs-Alpha' });
-    navigate(location.state?.from?.pathname || '/dashboard', { replace: true });
+    const destination = location.state?.from;
+    navigate(destination ? `${destination.pathname}${destination.search || ''}` : '/dashboard', { replace: true });
   };
 
   return (

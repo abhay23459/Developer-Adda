@@ -40,19 +40,19 @@ export default function Sidebar() {
     <aside className="app-sidebar w-64 h-screen fixed left-0 top-0 bg-slate-950/80 backdrop-blur-xl border-r border-slate-800/80 flex flex-col z-30">
       {/* Brand Header */}
       <div className="p-6 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-[#ff542b] p-[1px] shadow-lg shadow-orange-500/20">
-          <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
-            <Zap className="w-5 h-5 text-[#ff542b] fill-orange-400/20" />
+          <div className="w-10 h-10 rounded-xl bg-[#ff542b] p-[1px] shadow-lg shadow-orange-500/20">
+            <div className="w-full h-full bg-slate-950 rounded-[11px] flex items-center justify-center">
+              <Zap className="w-5 h-5 text-[#ff542b] fill-orange-400/20" />
+            </div>
           </div>
-        </div>
         <div>
-          <h1
-            className="font-bold text-lg tracking-tight text-white"
-            style={{ margin: 0, maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '1.125rem', lineHeight: 1.2, color: '#ffffff' }}
-            title={user?.community || 'Async-Devs-Alpha'}
-          >
-            {user?.community || 'Async-Devs-Alpha'}
-          </h1>
+            <h1
+              className="font-bold text-lg tracking-tight text-white"
+              style={{ margin: 0, maxWidth: '150px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontSize: '1.125rem', lineHeight: 1.2, color: '#ffffff' }}
+              title={user?.community || 'Async-Devs-Alpha'}
+            >
+              {user?.community || 'Async-Devs-Alpha'}
+            </h1>
           <span className="text-[10px] font-mono tracking-wider text-slate-500 uppercase">Local Build Network</span>
         </div>
       </div>

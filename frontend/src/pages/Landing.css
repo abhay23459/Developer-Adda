@@ -24,8 +24,10 @@
 h1 { margin: 28px 0 21px; font-size: clamp(75px, 8.2vw, 112px); line-height: .84; letter-spacing: -6px; font-weight: 600; }
 h1 em { color: var(--orange); font-family: Georgia, serif; font-size: 1.02em; font-weight: 400; letter-spacing: -6px; }
 .hero-description { max-width: 445px; color: #c9c4bc; font-size: 16px; line-height: 1.65; }
-.hero-actions { margin-top: 33px; display: flex; align-items: center; gap: 28px; }
+.hero-actions { margin-top: 33px; display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .orange-button.primary { padding: 16px 20px; font-size: 14px; min-width: 196px; }
+.create-community-action { display: inline-flex; align-items: center; gap: 7px; color: var(--orange); text-decoration: none; font-size: 13px; font-weight: 700; transition: color .2s, transform .2s; }
+.create-community-action:hover, .create-community-action:focus-visible { color: #ff825f; text-decoration: none; transform: translateY(-2px); }
 .text-action { display: inline-flex; align-items: center; gap: 9px; color: var(--paper); text-decoration: none; font-size: 13px; font-weight: 700; }.text-action svg { color: var(--orange); }
 .member-proof { display: flex; align-items: center; gap: 13px; margin-top: 69px; color: #aba69d; font: 11px/1.35 'DM Mono', monospace; }.member-proof p { margin: 0; }.member-proof strong { color: #e7e1d9; font-weight: 500; }
 .avatar-stack { display: flex; }.avatar-stack span { width: 26px; height: 26px; border: 2px solid #151515; border-radius: 50%; display: grid; place-items: center; margin-left: -5px; font: 11px 'DM Mono', monospace; color: #222; background: #e7ad85; }.avatar-stack span:first-child { margin-left: 0; }.avatar-stack span:nth-child(2) { background: #9cb7a1; }.avatar-stack span:nth-child(3) { background: #d9bd78; }.avatar-stack span:last-child { background: #454545; color: #fff; }

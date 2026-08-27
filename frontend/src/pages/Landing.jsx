@@ -21,6 +21,7 @@ export default function Landing() {
           <p className="hero-description">A focused community for tier 2 and tier 3 college students to find sharp minds nearby, learn in public, and ship projects that matter.</p>
           <div className="hero-actions">
             <Link className="orange-button primary" to="/auth/register">Find my community <ArrowUpRight size={17} /></Link>
+            <Link className="create-community-action" to="/community?create=1">Create your community <ArrowUpRight size={15} /></Link>
             <a className="text-action" href="#about">See how it works <ArrowDown size={15} /></a>
           </div>
           <div className="member-proof">

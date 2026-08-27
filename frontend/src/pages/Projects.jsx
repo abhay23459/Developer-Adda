@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import Button from '../components/Button';
 import SkillBadge from '../components/SkillBadge';
-import { Plus, ExternalLink, Kanban, Layers } from 'lucide-react';
+import { Plus, ExternalLink, Kanban } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 
 const initialTasks = [

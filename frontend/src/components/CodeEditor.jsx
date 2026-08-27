@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Play, Copy, Check, Terminal } from 'lucide-react';
 
 export default function CodeEditor({ initialCode = "// Write your code here...", onRun }) {

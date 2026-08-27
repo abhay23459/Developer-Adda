@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import SkillBadge from '../components/SkillBadge';
-import { Code2, Play, CheckCircle2, Clock } from 'lucide-react';
+import { Code2, Play, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const mockProblems = [

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ArrowRight, Check, CheckCircle2, Clock3, Crown, FolderGit2, MessageSquare, Plus, Send, ShieldCheck, UserPlus, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { ArrowRight, Check, CheckCircle2, Clock3, Crown, FolderGit2, MessageSquare, Send, ShieldCheck, UserPlus, X } from 'lucide-react';
+import { Link, useSearchParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import SkillBadge from '../components/SkillBadge';
@@ -26,13 +26,14 @@ const initialMessages = [
 ];
 
 export default function Community() {
+  const [searchParams] = useSearchParams();
   const user = useAuthStore((state) => state.user);
   const setCommunity = useAuthStore((state) => state.setCommunity);
   const [messages, setMessages] = useState(initialMessages);
   const [message, setMessage] = useState('');
   const [assessmentOpen, setAssessmentOpen] = useState(false);
   const [applicantStatus, setApplicantStatus] = useState('pending');
-  const [createOpen, setCreateOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(searchParams.get('create') === '1');
   const [community, setLocalCommunity] = useState(user?.community ? { name: user.community, technologies: user.communityTechnologies || [], description: user.communityDescription || 'A focused group for builders who want to learn in public, pair on useful projects, and ship together.' } : null);
   const [draftCommunity, setDraftCommunity] = useState({ name: '', technologies: '', description: '' });
 
@@ -57,11 +58,10 @@ export default function Community() {
       {community && <Sidebar />}
       <div className={`app-content ${community ? '' : 'community-precreate'}`}><Navbar />
         <main className="community-main">
-          {!community && <section className="community-empty-state"><span className="community-kicker">Your community space</span><h1>Create your community</h1><p>Start a focused space where up to 10 members can meet, take an entry test, chat, and build projects together.</p><button className="create-community-button" type="button" onClick={() => setCreateOpen(true)}><Plus size={16} /> Create your community</button></section>}
+          {!community && <section className="community-empty-state"><span className="community-kicker">Your community space</span><h1>Create your community</h1><p>Start a focused space where up to 10 members can meet, take an entry test, chat, and build projects together.</p></section>}
           {community && <>
           <div className="community-heading">
             <div><span className="community-kicker">My community space</span><h1>{community.name}</h1><p>{community.description}</p><div className="community-tech-list">{community.technologies.map((technology) => <SkillBadge key={technology} skill={technology} level={null} />)}</div></div>
-            <button className="create-community-button" type="button" onClick={() => setCreateOpen(true)}><Plus size={16} /> Create your community</button>
             <div className="capacity-card"><div><span>Community capacity</span><strong>8 <small>/ 10</small></strong></div><div className="capacity-track"><i /></div><em>2 spots open</em></div>
           </div>
 

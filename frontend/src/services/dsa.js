@@ -1,8 +1,5 @@
-import apiClient from './api';
-
 export const dsaService = {
-  async getProblems(filters = {}) {
-    try {
+  async getProblems() {
       // return await apiClient.get('/dsa/problems', { params: filters });
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -15,13 +12,9 @@ export const dsaService = {
           ]);
         }, 300);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
   async getProblemById(id) {
-    try {
       // return await apiClient.get(`/dsa/problems/${id}`);
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -45,13 +38,9 @@ You may assume that each input would have exactly one solution, and you may not 
           });
         }, 250);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
-  async submitSolution(problemId, solutionData) {
-    try {
+  async submitSolution() {
       // return await apiClient.post(`/dsa/problems/${problemId}/submit`, solutionData);
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -64,13 +53,9 @@ You may assume that each input would have exactly one solution, and you may not 
           });
         }, 600);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 
   async getContests() {
-    try {
       // return await apiClient.get('/dsa/contests');
       return new Promise((resolve) => {
         setTimeout(() => {
@@ -80,8 +65,5 @@ You may assume that each input would have exactly one solution, and you may not 
           ]);
         }, 300);
       });
-    } catch (error) {
-      throw error;
-    }
   },
 };

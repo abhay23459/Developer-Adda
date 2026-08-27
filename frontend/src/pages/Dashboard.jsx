@@ -1,4 +1,4 @@
-import React from 'react';
+ 
 import Sidebar from '../components/Sidebar';
 import Navbar from '../components/Navbar';
 import StatCard from '../components/StatCard';
@@ -37,13 +37,22 @@ export default function Dashboard() {
                 Your community <span className="text-indigo-400 font-semibold">{user?.community || 'No community yet'}</span> is currently ranked #4 globally.
               </p>
             </div>
-            <Link 
-              to="/compiler" 
-              className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-2"
-            >
-              <span>Quick Sandbox</span>
-              <ArrowUpRight className="w-4 h-4" />
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/community?create=1"
+                className="px-5 py-2.5 bg-orange-600 hover:bg-orange-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-orange-600/30 flex items-center gap-2"
+              >
+                <span>Create Community</span>
+                <Users className="w-4 h-4" />
+              </Link>
+              <Link
+                to="/compiler"
+                className="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl text-sm font-semibold text-white transition-all shadow-lg shadow-indigo-600/30 flex items-center gap-2"
+              >
+                <span>Quick Sandbox</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
 
           {/* Core Metrics */}
