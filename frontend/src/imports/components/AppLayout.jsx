@@ -46,7 +46,6 @@ export default function AppLayout({ children }) {
             </div>
             <div>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>TierConnect</div>
-              <div style={{ fontSize: 10, color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>Beta</div>
             </div>
           </div>
         </div>

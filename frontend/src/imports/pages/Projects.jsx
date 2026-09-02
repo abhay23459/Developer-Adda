@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const projects = [
   { id: 1, name: 'CropScan ML', community: 'ML Explorers', status: 'active', stack: ['Python', 'PyTorch', 'FastAPI'], progress: 65, milestone: 'Model training', members: 8, stars: 24, desc: 'Satellite imagery based crop disease detection using CNN models.' },
-  { id: 2, name: 'InvoiceFlow', community: 'Zero to SaaS', status: 'active', stack: ['React', 'Node.js', 'Stripe'], progress: 40, milestone: 'Beta launch', members: 6, stars: 18, desc: 'B2B invoicing tool for small Indian businesses with UPI integration.' },
+  { id: 2, name: 'InvoiceFlow', community: 'Zero to SaaS', status: 'active', stack: ['React', 'Node.js', 'Stripe'], progress: 40, milestone: 'Launch prep', members: 6, stars: 18, desc: 'B2B invoicing tool for small Indian businesses with UPI integration.' },
   { id: 3, name: 'VS Code Snippets', community: 'Open Web Guild', status: 'active', stack: ['TypeScript', 'VS Code API'], progress: 80, milestone: 'Extension publish', members: 7, stars: 41, desc: 'Smart code snippet manager extension for VS Code with AI completions.' },
   { id: 4, name: 'SolanaStake UI', community: 'Blockchain Builders', status: 'planning', stack: ['Rust', 'React', 'Solana'], progress: 15, milestone: 'Architecture', members: 5, stars: 9, desc: 'Clean UI for staking on Solana with real-time APY calculations.' },
   { id: 5, name: 'Campus LMS Redesign', community: 'Design Systems Lab', status: 'active', stack: ['Figma', 'React', 'Tailwind'], progress: 55, milestone: 'Prototype v2', members: 9, stars: 33, desc: 'Redesigning the terrible LMS used by 50+ colleges with proper UX.' },

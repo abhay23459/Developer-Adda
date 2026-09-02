@@ -12,7 +12,7 @@ export default function Navbar() {
 
   const links = ['Communities', 'How It Works', 'Colleges', 'Stories'];
 
-  const scrollTo = (id: string) => {
+  const scrollTo = (id) => {
     const el = document.getElementById(id.toLowerCase().replace(/ /g, '-'));
     if (el) el.scrollIntoView({ behavior: 'smooth' });
     setMenuOpen(false);

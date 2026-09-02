@@ -1,24 +1,6 @@
 import { useState } from 'react';
 
-type Category = 'All' | 'Projects' | 'Skills' | 'Research' | 'Startup';
-type CollegeTier = 'All Tiers' | 'IIT' | 'Tier 2' | 'Tier 3';
-
-interface Community {
-  id: number;
-  name: string;
-  description: string;
-  category: Exclude<Category, 'All'>;
-  members: number;
-  maxMembers: number;
-  college: string;
-  tier: Exclude<CollegeTier, 'All Tiers'>;
-  tags: string[];
-  avatar: string;
-  lead: string;
-  featured?: boolean;
-}
-
-const communities: Community[] = [
+const communities = [
   {
     id: 1,
     name: 'ML Explorers',
@@ -141,23 +123,23 @@ const communities: Community[] = [
   },
 ];
 
-const categoryFilters: Category[] = ['All', 'Projects', 'Skills', 'Research', 'Startup'];
-const tierFilters: CollegeTier[] = ['All Tiers', 'IIT', 'Tier 2', 'Tier 3'];
+const categoryFilters = ['All', 'Projects', 'Skills', 'Research', 'Startup'];
+const tierFilters = ['All Tiers', 'IIT', 'Tier 2', 'Tier 3'];
 
-const categoryColors: Record<string, { bg: string; text: string }> = {
+const categoryColors = {
   Projects: { bg: 'rgba(124,58,237,0.15)', text: '#9D5CF0' },
   Skills: { bg: 'rgba(16,185,129,0.15)', text: '#10B981' },
   Research: { bg: 'rgba(249,115,22,0.15)', text: '#F97316' },
   Startup: { bg: 'rgba(239,68,68,0.12)', text: '#F87171' },
 };
 
-const tierBadge: Record<string, { bg: string; text: string }> = {
+const tierBadge = {
   IIT: { bg: 'rgba(249,115,22,0.15)', text: '#FB923C' },
   'Tier 2': { bg: 'rgba(124,58,237,0.12)', text: '#A78BFA' },
   'Tier 3': { bg: 'rgba(16,185,129,0.12)', text: '#34D399' },
 };
 
-function MemberBar({ count, max }: { count: number; max: number }) {
+function MemberBar({ count, max }) {
   const pct = (count / max) * 100;
   const isFull = count >= max;
   const isAlmost = count >= max - 2;
@@ -199,7 +181,7 @@ function MemberBar({ count, max }: { count: number; max: number }) {
   );
 }
 
-function CommunityCard({ community }: { community: Community }) {
+function CommunityCard({ community }) {
   const isFull = community.members >= community.maxMembers;
   const cat = categoryColors[community.category];
   const tier = tierBadge[community.tier];
@@ -295,8 +277,8 @@ function CommunityCard({ community }: { community: Community }) {
 }
 
 export default function Communities() {
-  const [activeCategory, setActiveCategory] = useState<Category>('All');
-  const [activeTier, setActiveTier] = useState<CollegeTier>('All Tiers');
+  const [activeCategory, setActiveCategory] = useState('All');
+  const [activeTier, setActiveTier] = useState('All Tiers');
   const [search, setSearch] = useState('');
 
   const filtered = communities.filter((c) => {

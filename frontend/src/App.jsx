@@ -16,7 +16,7 @@ export default function App() {
   );
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
+    const handler = (e) => {
       if (e.key === 'd' && e.altKey) setShowSpec((v) => !v);
     };
     window.addEventListener('keydown', handler);

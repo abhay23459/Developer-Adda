@@ -9,12 +9,12 @@ const skillOptions = [
 export default function CreateCommunity() {
   const [step, setStep] = useState(1);
   const [selectedCat, setSelectedCat] = useState('');
-  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState([]);
   const [name, setName] = useState('');
   const [limit] = useState(10);
   const [submitted, setSubmitted] = useState(false);
 
-  const toggleSkill = (skill: string) => {
+  const toggleSkill = (skill) => {
     setSelectedSkills((prev) =>
       prev.includes(skill) ? prev.filter((s) => s !== skill) : [...prev, skill].slice(0, 5)
     );
