@@ -36,7 +36,7 @@ export default function Login() {
                 <line x1="12" y1="6" x2="9" y2="12" stroke="white" strokeWidth="1" opacity="0.4"/>
               </svg>
             </div>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20 }}>TierConnect</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 20 }}>Nexora</span>
           </div>
           <h2 style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-0.02em', marginBottom: 10 }}>
             Find your <span style={{ color: 'var(--primary)' }}>tribe</span>

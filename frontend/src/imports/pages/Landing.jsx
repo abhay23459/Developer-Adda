@@ -56,7 +56,7 @@ export default function Landing() {
                 <line x1="12" y1="6" x2="9" y2="12" stroke="white" strokeWidth="1" opacity="0.4"/>
               </svg>
             </div>
-            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>TierConnect</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>Nexora</span>
           </div>
           <div style={{ display: 'flex', gap: 12 }}>
             <button className="btn-ghost" style={{ padding: '8px 16px', fontSize: 13 }} onClick={() => navigate('/auth/login')}>Sign In</button>
@@ -173,7 +173,7 @@ export default function Landing() {
       {/* Footer */}
       <footer style={{ borderTop: '1px solid var(--border)', padding: '24px', textAlign: 'center' }}>
         <div style={{ fontSize: 12, color: 'var(--faint)', fontFamily: 'var(--font-mono)' }}>
-          TierConnect · Built for India's college builders · © 2025
+          Nexora · Built for India's college builders · © 2025
         </div>
       </footer>
     </div>

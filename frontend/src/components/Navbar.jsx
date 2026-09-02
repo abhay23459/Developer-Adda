@@ -44,7 +44,7 @@ export default function Navbar() {
             style={{ fontFamily: 'var(--font-display)' }}
             className="font-800 text-lg text-[#F1F0FF] tracking-tight"
           >
-            TierConnect
+            Nexora
           </span>
         </button>
 

@@ -78,7 +78,7 @@ export default function Assessment() {
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <button className="btn-ghost" onClick={() => navigate('/onboarding')}>← Back</button>
           <button className="btn-primary" disabled={selected.length === 0 || !yearOfStudy || loading} onClick={handleFinish} style={{ padding: '11px 28px' }}>
-            {loading ? 'Setting up…' : '🚀 Enter TierConnect'}
+            {loading ? 'Setting up…' : '🚀 Enter Nexora'}
           </button>
         </div>
       </div>

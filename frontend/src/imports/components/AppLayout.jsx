@@ -45,7 +45,7 @@ export default function AppLayout({ children }) {
               </svg>
             </div>
             <div>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>TierConnect</div>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Nexora</div>
             </div>
           </div>
         </div>

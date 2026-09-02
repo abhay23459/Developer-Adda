@@ -88,12 +88,12 @@ export default function Footer() {
               style={{ fontFamily: 'var(--font-display)' }}
               className="font-bold text-sm text-[#F1F0FF]"
             >
-              TierConnect
+              Nexora
             </span>
           </div>
 
           <p className="text-xs text-[#2A2D45] text-center">
-            Built with ❤️ for India's college builders · © 2025 TierConnect
+            Built with ❤️ for India's college builders · © 2025 Nexora
           </p>
 
           {/* Social links */}

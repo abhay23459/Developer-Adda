@@ -1,0 +1,11 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nexoraGrad" x1="16" y1="14" x2="108" y2="112" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#F97316"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="112" height="112" rx="28" fill="url(#nexoraGrad)"/>
+  <path d="M36 92V36H48L64 63L80 36H92V92H80V57L64 82L48 57V92H36Z" fill="white"/>
+  <circle cx="92" cy="36" r="6" fill="#F8E7FF" fill-opacity="0.9"/>
+</svg>
