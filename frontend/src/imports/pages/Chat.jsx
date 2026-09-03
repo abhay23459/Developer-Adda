@@ -78,15 +78,15 @@ export default function Chat() {
           </div>
 
           {/* Messages */}
-          <div style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+          <div className="chat-messages" style={{ flex: 1, overflowY: 'auto', padding: '16px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
             {messages.map((m) => (
-              <div key={m.id} style={{ display: 'flex', gap: 10, flexDirection: m.mine ? 'row-reverse' : 'row' }}>
+              <div className="chat-message-row" key={m.id} style={{ display: 'flex', gap: 10, flexDirection: m.mine ? 'row-reverse' : 'row' }}>
                 {!m.mine && (
                   <div style={{ width: 30, height: 30, borderRadius: '50%', background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, color: '#fff', flexShrink: 0, alignSelf: 'flex-end' }}>{m.avatar}</div>
                 )}
-                <div style={{ maxWidth: '65%' }}>
+                <div className="chat-message-content">
                   {!m.mine && <div style={{ fontSize: 10, color: 'var(--muted)', marginBottom: 3, fontWeight: 600 }}>{m.sender}</div>}
-                  <div style={{ padding: '9px 13px', borderRadius: m.mine ? '14px 4px 14px 14px' : '4px 14px 14px 14px', background: m.mine ? 'linear-gradient(135deg,var(--primary),var(--primary-light))' : 'var(--surface)', border: m.mine ? 'none' : '1px solid var(--border)', fontSize: 13, color: 'var(--text)', lineHeight: 1.55 }}>
+                  <div className="chat-message-bubble" style={{ padding: '9px 13px', borderRadius: m.mine ? '14px 4px 14px 14px' : '4px 14px 14px 14px', background: m.mine ? 'linear-gradient(135deg,var(--primary),var(--primary-light))' : 'var(--surface)', border: m.mine ? 'none' : '1px solid var(--border)', fontSize: 13, color: 'var(--text)', lineHeight: 1.55 }}>
                     {m.text}
                   </div>
                   <div style={{ fontSize: 9, color: 'var(--faint)', marginTop: 3, textAlign: m.mine ? 'right' : 'left', fontFamily: 'var(--font-mono)' }}>{m.time}</div>
@@ -97,7 +97,7 @@ export default function Chat() {
           </div>
 
           {/* Input */}
-          <div style={{ padding: '12px 20px', borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
+          <div className="chat-composer" style={{ padding: '12px 20px', borderTop: '1px solid var(--border)', background: 'var(--surface)' }}>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <input
                 className="field"

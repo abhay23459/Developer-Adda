@@ -48,7 +48,7 @@ export default function Login() {
             Join communities of like-minded builders across India's colleges.
           </p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 32 }}>
-            {['"Got placed at Google with my DSA community" — Rahul, NIT Warangal', '"My co-founder from TierConnect, now in YC" — Siddharth, IIT Bombay'].map((q) => (
+            {['"Got placed at Google with my DSA community" — Rahul, NIT Warangal', '"My co-founder from Nexora, now in YC" — Siddharth, IIT Bombay'].map((q) => (
               <div key={q} style={{ padding: '12px 16px', borderRadius: 10, background: 'var(--surface)', border: '1px solid var(--border)', fontSize: 12, color: 'var(--muted)', textAlign: 'left', lineHeight: 1.5 }}>
                 {q}
               </div>

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const starters = {
-  python: `# TierConnect Compiler — Python
+  python: `# Nexora Compiler — Python
 def solve():
     n = int(input())
     arr = list(map(int, input().split()))
@@ -13,7 +13,7 @@ def solve():
     print(result)
 
 solve()`,
-  javascript: `// TierConnect Compiler — JavaScript
+  javascript: `// Nexora Compiler — JavaScript
 const lines = require('fs').readFileSync('/dev/stdin','utf8').split('\\n');
 let idx = 0;
 
@@ -22,7 +22,7 @@ const arr = lines[idx++].split(' ').map(Number);
 
 // Your solution here
 console.log(arr.reduce((a, b) => a + b, 0));`,
-  cpp: `// TierConnect Compiler — C++
+  cpp: `// Nexora Compiler — C++
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -39,7 +39,7 @@ int main() {
     cout << accumulate(arr.begin(), arr.end(), 0) << "\\n";
     return 0;
 }`,
-  java: `// TierConnect Compiler — Java
+  java: `// Nexora Compiler — Java
 import java.util.*;
 
 public class Main {

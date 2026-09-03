@@ -2,11 +2,11 @@ import AppLayout from '../components/AppLayout';
 import { useState } from 'react';
 
 const contests = [
-  { id: 1, name: 'TierConnect Weekly #42', platform: 'In-App', duration: '2h', starts: 'Tomorrow, 8 PM', difficulty: 'Mixed', problems: 4, participants: 312, status: 'upcoming', prize: 'Leaderboard Points' },
+  { id: 1, name: 'Nexora Weekly #42', platform: 'In-App', duration: '2h', starts: 'Tomorrow, 8 PM', difficulty: 'Mixed', problems: 4, participants: 312, status: 'upcoming', prize: 'Leaderboard Points' },
   { id: 2, name: 'Codeforces Round #900', platform: 'Codeforces', duration: '2h30m', starts: 'Saturday, 9 PM', difficulty: 'Advanced', problems: 6, participants: 8200, status: 'upcoming', prize: 'Rating' },
   { id: 3, name: 'LeetCode Weekly #378', platform: 'LeetCode', duration: '1h30m', starts: 'Sunday, 10 AM', difficulty: 'Mixed', problems: 4, participants: 12400, status: 'upcoming', prize: 'LeetCoin' },
-  { id: 4, name: 'TierConnect Monthly April', platform: 'In-App', duration: '3h', starts: 'Apr 30, 7 PM', difficulty: 'Medium', problems: 5, participants: 520, status: 'upcoming', prize: '₹5,000 Cash' },
-  { id: 5, name: 'TierConnect Weekly #41', platform: 'In-App', duration: '2h', starts: 'Ended', difficulty: 'Mixed', problems: 4, participants: 289, status: 'ended', prize: 'Leaderboard Points', myRank: 23 },
+  { id: 4, name: 'Nexora Monthly April', platform: 'In-App', duration: '3h', starts: 'Apr 30, 7 PM', difficulty: 'Medium', problems: 5, participants: 520, status: 'upcoming', prize: '₹5,000 Cash' },
+  { id: 5, name: 'Nexora Weekly #41', platform: 'In-App', duration: '2h', starts: 'Ended', difficulty: 'Mixed', problems: 4, participants: 289, status: 'ended', prize: 'Leaderboard Points', myRank: 23 },
   { id: 6, name: 'AtCoder Beginner #340', platform: 'AtCoder', duration: '1h40m', starts: 'Ended', difficulty: 'Beginner', problems: 7, participants: 6100, status: 'ended', prize: 'Rating', myRank: 142 },
 ];
 

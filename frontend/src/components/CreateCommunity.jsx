@@ -47,7 +47,7 @@ export default function CreateCommunity() {
           </p>
           <div className="flex items-center gap-2 bg-[#0F1221] border border-[rgba(124,58,237,0.25)] rounded-xl p-3 mb-6">
             <span className="text-xs text-[#8B8DA8] flex-1 text-left" style={{ fontFamily: 'var(--font-mono)' }}>
-              tierconnect.in/c/{name.toLowerCase().replace(/ /g, '-')}
+              nexora.in/c/{name.toLowerCase().replace(/ /g, '-')}
             </span>
             <button className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-[#7C3AED] text-white">
               Copy Link

@@ -126,7 +126,7 @@ export default function DesignSpec() {
                 <line x1="12" y1="6" x2="9" y2="12" stroke="white" strokeWidth="1" opacity="0.4" />
               </svg>
             </div>
-            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 28, color: '#F1F0FF', letterSpacing: '-0.02em' }}>TierConnect</span>
+            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 28, color: '#F1F0FF', letterSpacing: '-0.02em' }}>Nexora</span>
           </div>
 
           <div style={{ display: 'inline-block', padding: '4px 14px', borderRadius: 999, border: '1px solid rgba(124,58,237,0.4)', background: 'rgba(124,58,237,0.1)', marginBottom: 24 }}>
@@ -152,7 +152,7 @@ export default function DesignSpec() {
           </div>
 
           <div style={{ marginTop: 48, fontSize: 12, color: '#2A2D45', fontFamily: "'JetBrains Mono', monospace" }}>
-            Generated · September 2025 · TierConnect Design Team
+            Generated · September 2025 · Nexora Design Team
           </div>
         </div>
       </div>
@@ -471,7 +471,7 @@ export default function DesignSpec() {
                 <line x1="12" y1="6" x2="9" y2="12" stroke="white" strokeWidth="1" opacity="0.4" />
               </svg>
             </div>
-            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 18, color: '#F1F0FF' }}>TierConnect Design System</span>
+            <span style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 800, fontSize: 18, color: '#F1F0FF' }}>Nexora Design System</span>
           </div>
           <p style={{ fontSize: 12, color: '#2A2D45', fontFamily: "'JetBrains Mono', monospace" }}>
             v1.0 · React + Tailwind CSS v4 · September 2025

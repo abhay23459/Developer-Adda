@@ -80,7 +80,7 @@ export default function Features() {
           <span
             className="inline-block badge px-3 py-1 rounded-full border border-[rgba(124,58,237,0.35)] bg-[rgba(124,58,237,0.08)] text-[#9D5CF0] mb-5"
           >
-            Why TierConnect
+            Why Nexora
           </span>
           <h2
             style={{ fontFamily: 'var(--font-display)' }}

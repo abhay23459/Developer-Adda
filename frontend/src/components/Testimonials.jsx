@@ -6,7 +6,7 @@ const testimonials = [
     college: 'JNTU Hyderabad · Tier 3',
     role: 'Full-Stack Dev',
     quote:
-      'I was the only CS student in my friend group who cared about building things. TierConnect gave me 9 others who felt the same. We shipped a college attendance app used by 1,200 students in our city.',
+      'I was the only CS student in my friend group who cared about building things. Nexora gave me 9 others who felt the same. We shipped a college attendance app used by 1,200 students in our city.',
     tags: ['Projects', 'Web Dev'],
     avatar: 'AK',
     color: '#7C3AED',
@@ -28,7 +28,7 @@ const testimonials = [
     college: 'IIT Bombay · IIT',
     role: 'YC Startup Founder',
     quote:
-      'Don\'t assume IIT students have it all figured out. I found my co-founder through TierConnect — he\'s from a Tier 3 college in UP and is the best engineer I\'ve worked with. We\'re now in YC W25.',
+      'Don\'t assume IIT students have it all figured out. I found my co-founder through Nexora — he\'s from a Tier 3 college in UP and is the best engineer I\'ve worked with. We\'re now in YC W25.',
     tags: ['Startup', 'Research'],
     avatar: 'SR',
     color: '#10B981',
@@ -39,7 +39,7 @@ const testimonials = [
     college: 'Amity University · Tier 3',
     role: 'ML Researcher Intern @ IISc',
     quote:
-      'No one in my college took ML seriously. On TierConnect I found 6 people who read papers every week with me. One of them connected me to his IISc contact and now I have a research internship.',
+      'No one in my college took ML seriously. On Nexora I found 6 people who read papers every week with me. One of them connected me to his IISc contact and now I have a research internship.',
     tags: ['Research', 'ML'],
     avatar: 'PN',
     color: '#7C3AED',

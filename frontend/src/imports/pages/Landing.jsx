@@ -103,7 +103,7 @@ export default function Landing() {
       <section style={{ padding: '80px 24px', background: 'var(--bg)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="badge" style={{ display: 'inline-block', padding: '4px 12px', borderRadius: 999, border: '1px solid rgba(124,58,237,0.35)', background: 'rgba(124,58,237,0.08)', color: 'var(--primary-light)', marginBottom: 16 }}>Why TierConnect</span>
+            <span className="badge" style={{ display: 'inline-block', padding: '4px 12px', borderRadius: 999, border: '1px solid rgba(124,58,237,0.35)', background: 'rgba(124,58,237,0.08)', color: 'var(--primary-light)', marginBottom: 16 }}>Why Nexora</span>
             <h2 style={{ fontSize: 'clamp(28px,4vw,42px)', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: 8 }}>Built for builders, <span style={{ color: 'var(--primary)' }}>not browsers</span></h2>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 16 }}>
