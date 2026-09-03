@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuthStore } from '../store/useAuthStore';
+import Footer from '../../components/Footer';
 
 const stats = [
   { value: '2,400+', label: 'Students' },
@@ -45,7 +47,7 @@ export default function Landing() {
       {/* Navbar */}
       <header className="nav-glass" style={{ position: 'sticky', top: 0, zIndex: 50, borderBottom: '1px solid var(--border)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px', height: 60, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Link to="/" aria-label="Go to Nexora home" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, transition: 'opacity 0.2s, transform 0.2s' }} onMouseEnter={(event) => { event.currentTarget.style.opacity = '0.82'; event.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseLeave={(event) => { event.currentTarget.style.opacity = '1'; event.currentTarget.style.transform = 'none'; }}>
             <div style={{ width: 32, height: 32, borderRadius: 9, background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
                 <circle cx="6" cy="6" r="2.5" fill="white" />
@@ -57,7 +59,7 @@ export default function Landing() {
               </svg>
             </div>
             <span style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>Nexora</span>
-          </div>
+          </Link>
           <div style={{ display: 'flex', gap: 12 }}>
             <button className="btn-ghost" style={{ padding: '8px 16px', fontSize: 13 }} onClick={() => navigate('/auth/login')}>Sign In</button>
             <button className="btn-primary" style={{ padding: '8px 18px', fontSize: 13 }} onClick={() => navigate('/auth/register')}>Join Free</button>
@@ -170,12 +172,7 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer style={{ borderTop: '1px solid var(--border)', padding: '24px', textAlign: 'center' }}>
-        <div style={{ fontSize: 12, color: 'var(--faint)', fontFamily: 'var(--font-mono)' }}>
-          Nexora · Built for India's college builders · © 2025
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

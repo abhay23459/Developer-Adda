@@ -1,4 +1,4 @@
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
 
@@ -52,7 +52,7 @@ export default function AppLayout({ children }) {
       }}>
         {/* Logo */}
         <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid var(--border)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Link to="/" aria-label="Go to Nexora home" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: 'inherit', transition: 'opacity 0.2s, transform 0.2s' }} onMouseEnter={(event) => { event.currentTarget.style.opacity = '0.82'; event.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseLeave={(event) => { event.currentTarget.style.opacity = '1'; event.currentTarget.style.transform = 'none'; }}>
             <div style={{ width: 34, height: 34, borderRadius: 10, background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <circle cx="6" cy="6" r="2.5" fill="white" />
@@ -66,7 +66,7 @@ export default function AppLayout({ children }) {
             <div>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Nexora</div>
             </div>
-          </div>
+          </Link>
         </div>
 
         {/* Nav links */}

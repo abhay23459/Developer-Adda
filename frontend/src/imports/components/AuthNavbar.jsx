@@ -6,7 +6,7 @@ export default function AuthNavbar({ page }) {
   return (
     <header className="auth-navbar nav-glass">
       <div className="auth-navbar-inner">
-        <Link className="auth-brand" to="/" aria-label="Nexora home">
+        <Link className="auth-brand" to="/" aria-label="Nexora home" style={{ transition: 'opacity 0.2s, transform 0.2s' }} onMouseEnter={(event) => { event.currentTarget.style.opacity = '0.82'; event.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseLeave={(event) => { event.currentTarget.style.opacity = '1'; event.currentTarget.style.transform = 'none'; }}>
           <span className="auth-brand-mark" aria-hidden="true">
             <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
               <circle cx="6" cy="6" r="2.5" fill="white" />

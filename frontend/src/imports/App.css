@@ -34,6 +34,13 @@
 .hover-lift { transition: transform 0.22s ease, box-shadow 0.22s ease; }
 .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(124,58,237,0.2); }
 
+.footer-grid { grid-template-columns: minmax(220px, 1.4fr) repeat(3, minmax(130px, 1fr)); }
+
+@media (max-width: 680px) {
+  .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
+  .footer-grid > :first-child { grid-column: 1 / -1; max-width: none !important; }
+}
+
 .badge {
   font-family: var(--font-mono);
   font-size: 10px;

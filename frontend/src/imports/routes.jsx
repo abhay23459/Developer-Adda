@@ -33,6 +33,7 @@ const ProtectedRoute = ({ children }) => {
 
 export default function AppRoutes() {
   return (
+     
     <Routes>
       {/* Public Pages */}
       <Route path="/" element={<Landing />} />
@@ -60,5 +61,6 @@ export default function AppRoutes() {
       {/* Fallback Catch-all Route */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+ 
   );
 }

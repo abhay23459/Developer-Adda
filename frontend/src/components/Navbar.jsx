@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,10 +27,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="flex items-center gap-2.5 group"
-        >
+        <Link to="/" aria-label="Go to Nexora home" className="flex items-center gap-2.5 group" style={{ transition: 'opacity 0.2s, transform 0.2s' }} onMouseEnter={(event) => { event.currentTarget.style.opacity = '0.82'; event.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseLeave={(event) => { event.currentTarget.style.opacity = '1'; event.currentTarget.style.transform = 'none'; }}>
           <div className="w-8 h-8 rounded-lg bg-[#7C3AED] flex items-center justify-center glow-violet">
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
               <circle cx="6" cy="6" r="2.5" fill="white" />
@@ -46,7 +44,7 @@ export default function Navbar() {
           >
             Nexora
           </span>
-        </button>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
