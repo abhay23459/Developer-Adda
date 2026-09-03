@@ -43,15 +43,9 @@ export default function FullStackPractice() {
   const [githubLoading, setGithubLoading] = useState(false);
   const [githubError, setGithubError] = useState('');
   const [completedTasks, setCompletedTasks] = useState(() => JSON.parse(localStorage.getItem('practice-completed-tasks') ?? '[]'));
-  const [customTasks] = useState(() => JSON.parse(localStorage.getItem('practice-admin-tasks') ?? '[]'));
   const [syncMessage, setSyncMessage] = useState('');
   const taskKey = (task) => `${track}:${task.title}`;
-  const allTracks = {
-    ...tracks,
-    frontend: { ...tracks.frontend, tasks: [...tracks.frontend.tasks, ...customTasks.filter((task) => task.track === 'frontend')] },
-    backend: { ...tracks.backend, tasks: [...tracks.backend.tasks, ...customTasks.filter((task) => task.track === 'backend')] },
-  };
-  const currentTrack = allTracks[track];
+  const currentTrack = tracks[track];
   const tasks = currentTrack.tasks.filter((task) => difficulty === 'All' || task.difficulty === difficulty);
   const completed = currentTrack.tasks.filter((task) => task.status === 'Completed' || completedTasks.includes(taskKey(task))).length;
   const openTask = (task) => navigate('/compiler', { state: { problem: { ...task, track: currentTrack.label } } });

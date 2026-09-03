@@ -28,7 +28,6 @@ export default function AppLayout({ children }) {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [practiceOpen, setPracticeOpen] = useState(location.pathname === '/dsa' || location.pathname === '/practice/full-stack');
-  const isAdmin = user?.role === 'admin';
 
   const handleLogout = () => {
     logout();
@@ -117,19 +116,6 @@ export default function AppLayout({ children }) {
                 </NavLink>
               ))}
             </div>
-          )}
-          {isAdmin && (
-            <NavLink
-              to="/admin"
-              style={({ isActive }) => ({
-                display: 'flex', alignItems: 'center', gap: 10, padding: '9px 12px', borderRadius: 9,
-                marginTop: 10, fontSize: 13, fontWeight: 600, color: isActive ? 'var(--text)' : 'var(--accent)',
-                background: isActive ? 'rgba(249,115,22,0.12)' : 'transparent', borderLeft: isActive ? '2px solid var(--accent)' : '2px solid transparent', textDecoration: 'none',
-              })}
-            >
-              <span style={{ fontSize: 14, width: 18, textAlign: 'center' }}>◆</span>
-              Admin Console
-            </NavLink>
           )}
         </nav>
 

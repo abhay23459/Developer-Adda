@@ -16,7 +16,7 @@ export default function Login() {
     if (!form.email || !form.password) { setError('Please fill all fields.'); return; }
     setLoading(true);
     await new Promise((r) => setTimeout(r, 800));
-    login({ name: form.email === 'admin@developeradda.com' ? 'Platform Admin' : 'Arjun Mehta', email: form.email, college: 'NIT Warangal', tier: 'Tier 2', role: form.email === 'admin@developeradda.com' ? 'admin' : 'student' });
+    login({ name: 'Arjun Mehta', email: form.email, college: 'NIT Warangal', tier: 'Tier 2', role: 'student' });
     navigate('/dashboard');
   };
 
@@ -87,7 +87,6 @@ export default function Login() {
             Continue as Demo
           </button>
 
-          <p style={{ fontSize: 11, color: 'var(--faint)', textAlign: 'center', marginTop: 16 }}>Admin access: admin@developeradda.com</p>
           <p style={{ fontSize: 12, color: 'var(--muted)', textAlign: 'center', marginTop: 8 }}>
             No account?{' '}
             <Link to="/auth/register" style={{ color: 'var(--primary-light)', fontWeight: 600 }}>Register free</Link>

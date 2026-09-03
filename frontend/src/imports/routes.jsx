@@ -23,18 +23,12 @@ import Chat from './pages/Chat';
 import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import FullStackPractice from './pages/FullStackPractice';
-import Admin from './pages/Admin';
 
 // Protected Route Guard
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
   const location = useLocation();
   return isAuthenticated ? children : <Navigate to="/auth/login" state={{ from: location }} replace />;
-};
-
-const AdminRoute = ({ children }) => {
-  const { isAuthenticated, user } = useAuthStore();
-  return isAuthenticated && user?.role === 'admin' ? children : <Navigate to="/dashboard" replace />;
 };
 
 export default function AppRoutes() {
@@ -62,7 +56,6 @@ export default function AppRoutes() {
       <Route path="/chat" element={<ProtectedRoute><Chat /></ProtectedRoute>} />
       <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
       <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-      <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
 
       {/* Fallback Catch-all Route */}
       <Route path="*" element={<Navigate to="/" replace />} />
