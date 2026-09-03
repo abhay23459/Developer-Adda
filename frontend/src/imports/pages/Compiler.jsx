@@ -1,5 +1,6 @@
 import AppLayout from '../components/AppLayout';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const starters = {
   python: `# TierConnect Compiler — Python
@@ -68,6 +69,8 @@ Output:
 Memory: 14.2 MB`;
 
 export default function Compiler() {
+  const { state } = useLocation();
+  const selectedProblem = state?.problem;
   const [lang, setLang] = useState('python');
   const [code, setCode] = useState(starters.python);
   const [input, setInput] = useState('5\n1 2 3 4 5');
@@ -87,10 +90,11 @@ export default function Compiler() {
 
   return (
     <AppLayout>
-      <div style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 0px)', overflow: 'hidden' }}>
+      <div className="compiler-layout" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 0px)', overflow: 'hidden' }}>
         {/* Toolbar */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 20px', borderBottom: '1px solid var(--border)', background: 'var(--surface)', flexWrap: 'wrap', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', padding: '10px 20px', borderBottom: '1px solid var(--border)', background: 'var(--surface)', flexWrap: 'wrap', gap: 10 }}>
           <h2 style={{ fontSize: 15, fontWeight: 700, marginRight: 8 }}>Compiler</h2>
+          {selectedProblem && <span className="compiler-problem-title">Solving: {selectedProblem.title}</span>}
           <div style={{ display: 'flex', gap: 4 }}>
             {['python', 'javascript', 'cpp', 'java'].map((l) => (
               <button key={l} onClick={() => handleLangChange(l)} className="badge" style={{ padding: '5px 10px', borderRadius: 7, border: `1px solid ${lang === l ? 'rgba(124,58,237,0.5)' : 'var(--border)'}`, background: lang === l ? 'rgba(124,58,237,0.15)' : 'var(--surface-2)', color: lang === l ? 'var(--primary-light)' : 'var(--muted)', cursor: 'pointer', transition: 'all 0.15s' }}>{l}</button>
@@ -105,10 +109,22 @@ export default function Compiler() {
           </div>
         </div>
 
+        {selectedProblem && (
+          <div className="compiler-problem-context">
+            <div>
+              {selectedProblem.track && <span className="compiler-problem-track">{selectedProblem.track}</span>}
+              <strong>{selectedProblem.title}</strong>
+              <span>{selectedProblem.topic}</span>
+              {selectedProblem.description && <p>{selectedProblem.description}</p>}
+            </div>
+            <span className="compiler-problem-difficulty" data-difficulty={selectedProblem.difficulty}>{selectedProblem.difficulty}</span>
+          </div>
+        )}
+
         {/* Editor area */}
-        <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+        <div className="compiler-workspace" style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
           {/* Code panel */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', borderRight: '1px solid var(--border)', minWidth: 0 }}>
+          <div className="compiler-code-panel" style={{ flex: 1, display: 'flex', flexDirection: 'column', borderRight: '1px solid var(--border)', minWidth: 0 }}>
             <div style={{ padding: '6px 16px', background: 'var(--surface-2)', borderBottom: '1px solid var(--border)', fontSize: 11, color: 'var(--muted)', fontFamily: 'var(--font-mono)', display: 'flex', alignItems: 'center', gap: 8 }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--primary)', display: 'inline-block' }} />
               solution.{lang === 'cpp' ? 'cpp' : lang === 'javascript' ? 'js' : lang}
@@ -122,7 +138,7 @@ export default function Compiler() {
           </div>
 
           {/* Right panel */}
-          <div style={{ width: 340, display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+          <div className="compiler-output-panel" style={{ width: 340, display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
             <div style={{ display: 'flex', borderBottom: '1px solid var(--border)', background: 'var(--surface-2)' }}>
               {['input', 'output'].map((t) => (
                 <button key={t} onClick={() => setTab(t)} style={{ flex: 1, padding: '9px', fontSize: 12, fontWeight: 500, border: 'none', background: tab === t ? 'var(--surface)' : 'transparent', color: tab === t ? 'var(--text)' : 'var(--muted)', borderBottom: tab === t ? '2px solid var(--primary)' : '2px solid transparent', cursor: 'pointer', textTransform: 'capitalize' }}>{t}</button>

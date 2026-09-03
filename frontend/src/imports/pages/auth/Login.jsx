@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuthStore } from '../../store/useAuthStore';
+import AuthNavbar from '../../components/AuthNavbar';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,14 +16,16 @@ export default function Login() {
     if (!form.email || !form.password) { setError('Please fill all fields.'); return; }
     setLoading(true);
     await new Promise((r) => setTimeout(r, 800));
-    login({ name: 'Arjun Mehta', email: form.email, college: 'NIT Warangal', tier: 'Tier 2' });
+    login({ name: form.email === 'admin@developeradda.com' ? 'Platform Admin' : 'Arjun Mehta', email: form.email, college: 'NIT Warangal', tier: 'Tier 2', role: form.email === 'admin@developeradda.com' ? 'admin' : 'student' });
     navigate('/dashboard');
   };
 
   return (
-    <div style={{ minHeight: '100svh', display: 'flex', background: 'var(--bg)' }}>
+    <div className="auth-page">
+      <AuthNavbar page="login" />
+      <div className="auth-layout" style={{ minHeight: 'calc(100svh - 61px)', display: 'flex', background: 'var(--bg)' }}>
       {/* Left panel */}
-      <div className="geo-grid" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, position: 'relative', overflow: 'hidden' }}>
+      <div className="auth-intro geo-grid" style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 40, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', top: '40%', left: '50%', transform: 'translate(-50%,-50%)', width: 400, height: 400, borderRadius: '50%', background: 'radial-gradient(circle,rgba(124,58,237,0.15) 0%,transparent 70%)', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 360 }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: 48 }}>
@@ -55,7 +58,7 @@ export default function Login() {
       </div>
 
       {/* Right panel — form */}
-      <div style={{ width: 420, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40, borderLeft: '1px solid var(--border)', background: 'var(--surface)' }}>
+      <div className="auth-form-panel" style={{ width: 420, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40, borderLeft: '1px solid var(--border)', background: 'var(--surface)' }}>
         <div style={{ width: '100%', maxWidth: 340 }}>
           <h2 style={{ fontSize: 22, fontWeight: 800, marginBottom: 4, letterSpacing: '-0.02em' }}>Welcome back</h2>
           <p style={{ fontSize: 13, color: 'var(--muted)', marginBottom: 28 }}>Sign in to your account</p>
@@ -84,11 +87,13 @@ export default function Login() {
             Continue as Demo
           </button>
 
-          <p style={{ fontSize: 12, color: 'var(--muted)', textAlign: 'center', marginTop: 24 }}>
+          <p style={{ fontSize: 11, color: 'var(--faint)', textAlign: 'center', marginTop: 16 }}>Admin access: admin@developeradda.com</p>
+          <p style={{ fontSize: 12, color: 'var(--muted)', textAlign: 'center', marginTop: 8 }}>
             No account?{' '}
             <Link to="/auth/register" style={{ color: 'var(--primary-light)', fontWeight: 600 }}>Register free</Link>
           </p>
         </div>
+      </div>
       </div>
     </div>
   );

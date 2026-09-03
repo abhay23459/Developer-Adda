@@ -36,9 +36,9 @@ export default function Chat() {
 
   return (
     <AppLayout>
-      <div style={{ display: 'flex', height: 'calc(100vh - 0px)', overflow: 'hidden' }}>
+      <div className="chat-layout" style={{ display: 'flex', height: 'calc(100vh - 0px)', overflow: 'hidden' }}>
         {/* Channel list */}
-        <div style={{ width: 260, borderRight: '1px solid var(--border)', background: 'var(--surface)', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
+        <div className="chat-channel-list" style={{ width: 260, borderRight: '1px solid var(--border)', background: 'var(--surface)', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
           <div style={{ padding: '16px 16px 8px', borderBottom: '1px solid var(--border)' }}>
             <h2 style={{ fontSize: 15, fontWeight: 700 }}>Messages</h2>
           </div>
@@ -67,7 +67,7 @@ export default function Chat() {
         </div>
 
         {/* Chat area */}
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+        <div className="chat-main" style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           {/* Header */}
           <div style={{ padding: '12px 20px', borderBottom: '1px solid var(--border)', background: 'var(--surface)', display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--surface-2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>{activeChannel.avatar}</div>

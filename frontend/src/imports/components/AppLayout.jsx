@@ -1,16 +1,20 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuthStore } from '../store/useAuthStore';
 
 const navItems = [
   { to: '/dashboard',   icon: '⊞', label: 'Dashboard' },
   { to: '/community',   icon: '◉', label: 'Community' },
   { to: '/projects',    icon: '◈', label: 'Projects' },
-  { to: '/dsa',         icon: '⟁', label: 'DSA Practice' },
   { to: '/contests',    icon: '⚡', label: 'Contests' },
   { to: '/hackathons',  icon: '🔥', label: 'Hackathons' },
   { to: '/leaderboard', icon: '▲', label: 'Leaderboard' },
-  { to: '/compiler',    icon: '>', label: 'Compiler' },
   { to: '/chat',        icon: '◎', label: 'Chat' },
+];
+
+const practiceItems = [
+  { to: '/practice/full-stack', label: 'Full Stack Web Development Practice' },
+  { to: '/dsa', label: 'DSA Practice' },
 ];
 
 const bottomItems = [
@@ -20,7 +24,11 @@ const bottomItems = [
 
 export default function AppLayout({ children }) {
   const { user, logout } = useAuthStore();
+  const location = useLocation();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [practiceOpen, setPracticeOpen] = useState(location.pathname === '/dsa' || location.pathname === '/practice/full-stack');
+  const isAdmin = user?.role === 'admin';
 
   const handleLogout = () => {
     logout();
@@ -28,9 +36,21 @@ export default function AppLayout({ children }) {
   };
 
   return (
-    <div className="page-shell">
+    <div className={`page-shell${menuOpen ? ' menu-open' : ''}`}>
+      <button
+        className="mobile-menu-button"
+        type="button"
+        aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((open) => !open)}
+      >
+        {menuOpen ? '×' : '☰'}
+      </button>
+      {menuOpen && <button className="sidebar-overlay" type="button" aria-label="Close navigation" onClick={() => setMenuOpen(false)} />}
       {/* Sidebar */}
-      <aside className="sidebar">
+      <aside className="sidebar" onClick={(event) => {
+        if (event.target.closest('a')) setMenuOpen(false);
+      }}>
         {/* Logo */}
         <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid var(--border)' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -74,6 +94,43 @@ export default function AppLayout({ children }) {
               {item.label}
             </NavLink>
           ))}
+          <button
+            type="button"
+            className="practice-nav-toggle"
+            aria-expanded={practiceOpen}
+            onClick={() => setPracticeOpen((open) => !open)}
+          >
+            <span className="practice-nav-icon">⟁</span>
+            <span>Practice</span>
+            <span className="practice-nav-chevron">{practiceOpen ? '⌃' : '⌄'}</span>
+          </button>
+          {practiceOpen && (
+            <div className="practice-nav-submenu">
+              {practiceItems.map((item) => (
+                <NavLink
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) => `practice-nav-link${isActive ? ' active' : ''}`}
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+          )}
+          {isAdmin && (
+            <NavLink
+              to="/admin"
+              style={({ isActive }) => ({
+                display: 'flex', alignItems: 'center', gap: 10, padding: '9px 12px', borderRadius: 9,
+                marginTop: 10, fontSize: 13, fontWeight: 600, color: isActive ? 'var(--text)' : 'var(--accent)',
+                background: isActive ? 'rgba(249,115,22,0.12)' : 'transparent', borderLeft: isActive ? '2px solid var(--accent)' : '2px solid transparent', textDecoration: 'none',
+              })}
+            >
+              <span style={{ fontSize: 14, width: 18, textAlign: 'center' }}>◆</span>
+              Admin Console
+            </NavLink>
+          )}
         </nav>
 
         {/* Bottom: profile + settings + logout */}

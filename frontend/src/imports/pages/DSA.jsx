@@ -1,5 +1,6 @@
 import AppLayout from '../components/AppLayout';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const problems = [
   { id: 1, title: 'Two Sum', difficulty: 'Easy', topic: 'Arrays', status: 'solved', acceptance: '52%' },
@@ -27,6 +28,7 @@ const stats = [
 ];
 
 export default function DSA() {
+  const navigate = useNavigate();
   const [topic, setTopic] = useState('All');
   const [diff, setDiff] = useState('All');
 
@@ -72,7 +74,7 @@ export default function DSA() {
             <span>#</span><span>Title</span><span>Difficulty</span><span>Topic</span><span>Status</span><span>Accept</span>
           </div>
           {filtered.map((p, i) => (
-            <div key={p.id} style={{ display: 'grid', gridTemplateColumns: '40px 1fr 100px 130px 80px 80px', gap: 0, padding: '12px 16px', borderBottom: i < filtered.length - 1 ? '1px solid var(--border)' : 'none', background: i % 2 === 0 ? 'var(--surface)' : 'var(--bg)', cursor: 'pointer', transition: 'background 0.12s' }}
+            <div key={p.id} role="button" tabIndex={0} onClick={() => navigate('/compiler', { state: { problem: p } })} onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') navigate('/compiler', { state: { problem: p } }); }} style={{ display: 'grid', gridTemplateColumns: '40px 1fr 100px 130px 80px 80px', gap: 0, padding: '12px 16px', borderBottom: i < filtered.length - 1 ? '1px solid var(--border)' : 'none', background: i % 2 === 0 ? 'var(--surface)' : 'var(--bg)', cursor: 'pointer', transition: 'background 0.12s' }}
               onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(124,58,237,0.05)'}
               onMouseLeave={(e) => e.currentTarget.style.background = i % 2 === 0 ? 'var(--surface)' : 'var(--bg)'}
             >
