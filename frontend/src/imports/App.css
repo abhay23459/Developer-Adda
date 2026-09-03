@@ -444,9 +444,9 @@
 
   .chat-layout,
   .compiler-layout {
-    height: auto !important;
+    height: calc(100svh - 56px) !important;
     min-height: calc(100svh - 56px);
-    overflow: visible !important;
+    overflow: hidden !important;
   }
 
   .chat-layout {
@@ -455,7 +455,9 @@
 
   .chat-channel-list {
     width: 100% !important;
-    max-height: 210px;
+    height: 154px;
+    max-height: 154px;
+    flex: 0 0 154px;
     border-right: 0 !important;
     border-bottom: 1px solid var(--border);
   }
@@ -474,7 +476,8 @@
   }
 
   .chat-main {
-    min-height: calc(100svh - 270px);
+    min-height: 0;
+    flex: 1 1 auto;
   }
 
   .chat-main > div:nth-child(2) {
