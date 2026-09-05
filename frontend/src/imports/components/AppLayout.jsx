@@ -51,9 +51,9 @@ export default function AppLayout({ children }) {
         if (event.target.closest('a')) setMenuOpen(false);
       }}>
         {/* Logo */}
-        <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid var(--border)' }}>
-          <Link to="/" aria-label="Go to Nexora home" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: 'inherit', transition: 'opacity 0.2s, transform 0.2s' }} onMouseEnter={(event) => { event.currentTarget.style.opacity = '0.82'; event.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseLeave={(event) => { event.currentTarget.style.opacity = '1'; event.currentTarget.style.transform = 'none'; }}>
-            <div style={{ width: 34, height: 34, borderRadius: 10, background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+        <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'flex-end' }}>
+          <Link to="/" aria-label="Go to Nexora home" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, color: 'inherit', transition: 'opacity 0.2s, transform 0.2s', marginLeft: 'auto' }} onMouseEnter={(event) => { event.currentTarget.style.opacity = '0.82'; event.currentTarget.style.transform = 'translateY(-1px)'; }} onMouseLeave={(event) => { event.currentTarget.style.opacity = '1'; event.currentTarget.style.transform = 'none'; }}>
+            <div style={{ width: 34, height: 34, borderRadius: 10, background: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, order: 2 }}>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <circle cx="6" cy="6" r="2.5" fill="white" />
                 <circle cx="12" cy="6" r="2.5" fill="white" opacity="0.6" />
@@ -63,7 +63,7 @@ export default function AppLayout({ children }) {
                 <line x1="12" y1="6" x2="9" y2="12" stroke="white" strokeWidth="1" opacity="0.4" />
               </svg>
             </div>
-            <div>
+            <div style={{ order: 1 }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: 15, letterSpacing: '-0.02em' }}>Nexora</div>
             </div>
           </Link>
